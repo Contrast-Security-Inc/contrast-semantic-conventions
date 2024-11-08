@@ -1,0 +1,67 @@
+groups:
+  - id: attributes.contrast.actions
+    type: attribute_group
+    brief: "Actions that we track in Contrast"
+    attributes:
+      - id: action
+        brief: >
+          The type of action that was observed.
+        requirement_level: required
+        examples:
+          - file-open-create
+          - authn-request
+        type:
+          allow_custom_values: false
+          members:
+            - id: storage-query
+              value: "storage-query"
+              brief: "Functions that execute queries"
+            - id: file-open-create
+              value: "file-open-create"
+              brief: "file open or create action"
+            - id: url-forward
+              value: "url-forward"
+              brief: "Any function designed to forward a request to another URL"
+            - id: url-redirect
+              value: "url-redirect"
+              brief: "Function that result in an http 302 redirect code sent to the client"
+            - id: host-cmd-exec
+              value: "host-cmd-exec"
+              brief: "system shell command execution"
+            - id: ldap-query
+              value: "ldap-query"
+              brief: "Functions that result in and ldap query operation"
+            - id: smtp-exec
+              value: "smtp-exec"
+              brief: "Functions that result in an SMTP command execution"
+            - id: outbound-service-call
+              value: "outbound-service-call"
+              brief: "Functions that result in external calls to other services"
+            - id: authn-request
+              value: "authn-request"
+              brief: "Functions that perform authentication actions"
+            - id: authz-request
+              value: "authz-request"
+              brief: "Functions that perform authorization actions"
+            - id: el-execution
+              value: "el-execution"
+              brief: "Spring expression language execution"
+            - id: ognl-execution
+              value: "ognl-execution"
+              brief: "Object-Graph Navigation Language expression execution."
+
+  - id: attributes.contrast.action.metric
+    extends: attributes.contrast.actions
+    type: attribute_group
+    brief: "Describes attributes for Contrast Action metrics"
+    attributes:
+      - ref: http.request.method
+      - ref: http.route
+
+  - id: metric.http.server.action.total
+    type: metric
+    extends: attributes.contrast.action.metric
+    metric_name: http.server.action.total
+    unit: "{action}"
+    brief: "A counter of actions for contrast"
+    instrument: counter

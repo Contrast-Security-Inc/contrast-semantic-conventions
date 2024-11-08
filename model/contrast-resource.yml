@@ -1,0 +1,32 @@
+groups:
+  - id: contrast.resource
+    type: resource
+    brief: "contrast defined resources for observability data"
+    attributes:
+      - id: contrast.semconv.version
+        requirement_level: required
+        brief: The version of contrast semantic conventions that the data adheres to.
+        type: string
+        examples:
+          - "0.1.0"
+      - id: otel.semconv.version
+        requirement_level: required
+        brief: The version of otel semantic conventions that the data adheres to.
+        type: string
+        examples:
+          - "1.22.0"
+      - id: deployment
+        requirement_level: required
+        brief: "deployment environment"
+        type:
+          allow_custom_values: false
+          members:
+            - id: qa
+              value: "QA"
+              brief: "quality assurance environment"
+            - id: dev
+              value: "DEVELOPMENT"
+              brief: "development environment"
+            - id: prod
+              value: "PRODUCTION"
+              brief: "production environment"

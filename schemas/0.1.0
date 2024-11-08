@@ -1,0 +1,6 @@
+# file format from opentelemetry 
+file_format: 1.1.0
+
+schema_url: https://github.com/Contrast-Security-OSS/secobs-semantic-conventions/releases/download/v0.1.0/0.1.0
+versions:
+  0.1.0:

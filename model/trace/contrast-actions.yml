@@ -1,0 +1,206 @@
+groups:
+  - id: attributes.contrast.action.span.authn
+    prefix: contrast.authentication
+    type: span
+    brief: "Describes attributes for Contrast Action span of type authn-request"
+    attributes:
+      - id: mechanism
+        brief: >
+          An authentication mechanism is a specific method or approach used to
+          verify the identity of a user, system, or entity attempting to access a resource.
+        examples: [password, token, biometric]
+        type:
+          allow_custom_values: false
+          members:
+            - id: password
+              value: "password"
+              brief: "Users provide a username and password."
+            - id: certificate
+              value: "certificate"
+              brief: "x509 certificate authentication or similar"
+            - id: token
+              value: "token"
+              brief: "Involves using a physical or virtual token to authenticate a user"
+            - id: biometric
+              value: "biometric"
+              brief: "file open or create action"
+            - id: mfa
+              value: "mfa"
+              brief: "Two or more of the above mechanisms are used"
+
+      - id: protocol
+        brief: >
+          An authentication protocol is a set of rules and procedures that
+          dictate how authentication mechanisms should operate to establish
+          trust and verify identities securely.
+        examples: [oauth, saml, ldap, custom]
+        type:
+          allow_custom_values: false
+          members:
+            - id: saml
+              value: "saml"
+              brief: "Security Assertion Markup Language"
+            - id: oauth
+              value: "oauth"
+              brief: "Open Authentication and OIDC"
+            - id: ldap
+              value: "ldap"
+              brief: "Lightweight Directory Access Protocol"
+            - id: kerberos
+              value: "kerberos"
+              brief: ""
+
+  - id: attributes.contrast.action.span.authz
+    prefix: contrast.authorization
+    type: span
+    brief: >
+      Describes attributes for Contrast Action span of type authz-request
+    attributes:
+      - id: mechanism
+        brief: >
+          How are authz decisions made for the resource.
+        examples: [rbac, dac, pbac]
+        type:
+          allow_custom_values: false
+          members:
+            - id: rbac
+              value: "rbac"
+              brief: Role Based Access Control
+            - id: abac
+              value: "abac"
+              brief: Attribute Based Access Control
+            - id: mac
+              value: "mac"
+              brief: >
+                Mandatory Access Control (MAC) is a security model where access to resources is determined by
+                the security labels assigned to subjects (users or processes) and objects (resources).
+            - id: dac
+              value: "dac"
+              brief: Discretionary Access Control (DAC) is a model where owners of resources have the discretion to control access to their resources.
+            - id: pbac
+              value: "pbac"
+              brief: Policy Based Access Control
+            - id: hbac
+              value: "hbac"
+              brief: History Based Access Control
+            - id: tbac
+              value: "tbac"
+              brief: Time Based Access Control
+
+      - id: rbac.role
+        brief: >
+          Role Requested for authz check. The values here are very domain specific, but
+          will always be normalized to a lowercase value in the data here.
+        examples: [user, editor, manager]
+        type: string
+      - id: dac.permission
+        brief: >
+          Permission requested for access to the resource. The values here are very domain specific, but
+          will always be normalized to a lowercase value in the data here.
+        examples: [read, write, append, delete]
+        type: string
+      - id: mac.labels
+        brief: >
+          Labels on the requested resource. The values here are very domain specific, but
+          will always be normalized to a lowercase value in the data here.
+        examples: [top_secret, confidential, internal, public]
+        type: string
+
+  - id: contrast.action.span.authn
+    type: span
+    brief: "Describes attributes for Contrast Authentication Action spans"
+    attributes:
+      - ref: contrast.authentication.mechanism
+      - ref: contrast.authentication.protocol
+
+  - id: contrast.action.span.authz
+    type: span
+    brief: "Describes attributes for Contrast Authorization Action spans"
+    attributes:
+      - ref: contrast.authorization.mechanism
+        requirement_level: recommended
+      - ref: contrast.authorization.rbac.role
+        requirement_level:
+          recommended: If mechanism is 'rbac'
+      - ref: contrast.authorization.dac.permission
+        requirement_level:
+          recommended: If mechanism is 'dac'
+      - ref: contrast.authorization.mac.labels
+        requirement_level:
+          recommended: If mechanism is 'mac'
+
+  - id: contrast.action.span.file-open-create
+    prefix: file.open
+    type: span
+    brief: >
+      Describes attributes for Contrast Action span of type file-open-create.
+    attributes:
+      - id: path
+        brief: >
+          The absolute path that was accessed.
+        requirement_level: required
+        examples: [/etc/myconfig, /foo/bar, /some/tmp]
+        type: string
+      - id: flags
+        brief: >
+          The flags used when the file was opened or created.
+        requirement_level: recommended
+        examples: [o_rdonly, o_rdwr]
+        type:
+          allow_custom_values: false
+          members:
+            - id: o_rdonly
+              value: o_rdonly
+              brief: Read only access
+            - id: o_wronly
+              value: o_wronly
+              brief: Write only access
+            - id: o_rdwr
+              value: o_rdwr
+              brief: Read/write access
+
+  - id: contrast.action.span.host-cmd-exec
+    type: span
+    brief: >
+      Describes attributes for Contrast Action span of type host-cmd-exec.
+    attributes:
+      - id: cmd
+        brief: >
+          String of executed command with its arguments.
+        requirement_level: required
+        examples: [ls /foo, bash -c somebin, chmod 755 foobar]
+        type: string
+
+  - id: contrast.action.span.outbound-service-call
+    type: span
+    extends: trace.http.client
+    brief: >
+      Describes attributes for Contrast Action span of type outbound-service-call.
+      These actions are always using the http protocol.
+
+  - id: attributes.contrast.code-exec
+    type: attribute_group
+    brief: Attributes that refer to code execution operations
+    attributes:
+      - id: code.contents
+        requirement_level: required
+        type: string
+        brief: The code representing the expression being executed.
+        examples: [
+          "#{'String1 ' + 'string2'}",
+          "#{20 - 1}",
+          "'Just a string value'.substring(5)"
+        ]
+  - id: contrast.action.span.el-execution
+    type: span
+    extends: attributes.contrast.code-exec
+    brief: >
+      Describes attributes for Contrast Action span of type el-execution. The Spring Expression Language (SpEL for short) is a
+      powerful expression language that supports querying and manipulating an object graph at runtime.
+  - id: contrast.action.span.ognl-execution
+    extends: attributes.contrast.code-exec
+    type: span
+    brief: >
+      Describes attributes for Contrast Action span of type ognl-execution. OGNL stands for Object-Graph Navigation Language.
+      It is an expression language for getting and setting properties of Java objects, plus other extras such as list projection
+      and selection and lambda expressions. You use the same expression for both getting and setting the value of a property.
