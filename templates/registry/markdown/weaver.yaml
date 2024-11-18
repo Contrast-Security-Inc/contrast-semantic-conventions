@@ -1,0 +1,38 @@
+templates:
+  - pattern: readme.md.j2
+    filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
+    application_mode: single
+  - pattern: attribute_namespace.md.j2
+    filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
+    application_mode: each
+acronyms:
+  - AI
+  - AWS
+  - CICD
+  - CloudEvents
+  - CloudFoundry
+  - CLR
+  - CPU
+  - CSI
+  - DynamoDB
+  - ECS
+  - EKS
+  - GCE
+  - GCP
+  - GraphQL
+  - HTTP
+  - iOS
+  - JVM
+  - NodeJS
+  - OCI
+  - OpenTracing
+  - OS
+  - OTel
+  - RabbitMQ
+  - RocketMQ
+  - RPC
+  - S3
+  - SignalR
+  - TLS
+  - URL
+  - VCS

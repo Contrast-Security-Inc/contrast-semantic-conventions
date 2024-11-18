@@ -2,6 +2,30 @@
 ALL_DOCS := $(shell find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' | sort)
 PWD := $(shell pwd)
 
+# Determine OS & Arch for specific OS only tools on Unix based systems
+OS := $(shell uname | tr '[:upper:]' '[:lower:]')
+ifeq ($(OS),darwin)
+	SED := gsed
+else
+	SED := sed
+endif
+
+# From where to resolve the containers (e.g. "otel/weaver").
+CONTAINER_REPOSITORY=docker.io
+
+# Per container overrides for the repository resolution.
+WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
+SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
+
+# Fully qualified references to containers used in this Makefile.
+# These are parsed from dependencies.Dockerfile so dependabot will autoupdate
+# the versions of docker files we use.
+WEAVER_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
+SEMCONVGEN_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
+OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+
+DOCKER_USER=$(shell id -u):$(shell id -g)
+
 TOOLS_DIR := ./internal/tools
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
@@ -97,14 +121,48 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --platform linux/amd64 --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
+	docker run --rm \
+		-u $(DOCKER_USER) \
+		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
+		$(WEAVER_CONTAINER) registry update-markdown \
+		--registry=/home/weaver/source \
+		--attribute-registry-base-url=/docs/attributes-registry \
+		--templates=/home/weaver/templates \
+		--target=markdown \
+		--future \
+		/home/weaver/target
 
-# Check if current markdown tables differ from the ones that would be generated from YAML definitions
+# Generate attribute registry markdown.
+.PHONY: attribute-registry-generation
+attribute-registry-generation:
+	docker run --rm \
+		-u $(DOCKER_USER) \
+		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
+		$(WEAVER_CONTAINER) registry generate \
+		  --registry=/home/weaver/source \
+		  --templates=/home/weaver/templates \
+		  markdown \
+		  /home/weaver/target/attributes-registry/
+
+# Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
-	docker run --platform linux/amd64 --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
-		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
+		$(WEAVER_CONTAINER) registry update-markdown \
+		--registry=/home/weaver/source \
+		--attribute-registry-base-url=/docs/attributes-registry \
+		--templates=/home/weaver/templates \
+		--target=markdown \
+		--dry-run \
+		--future \
+		/home/weaver/target
 
 .PHONY: schema-check
 schema-check:

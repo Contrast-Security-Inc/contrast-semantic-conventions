@@ -15,18 +15,3 @@ groups:
         type: string
         examples:
           - "1.22.0"
-      - id: deployment
-        requirement_level: required
-        brief: "deployment environment"
-        type:
-          allow_custom_values: false
-          members:
-            - id: qa
-              value: "QA"
-              brief: "quality assurance environment"
-            - id: dev
-              value: "DEVELOPMENT"
-              brief: "development environment"
-            - id: prod
-              value: "PRODUCTION"
-              brief: "production environment"
