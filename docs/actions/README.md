@@ -12,8 +12,8 @@ action nor will it contain enough information to determine the action execution 
 <!-- toc -->
 
 - [Actions](#actions)
-  - [Metrics](#metrics)
-  - [Spans](#spans)
+  * [Metrics](#metrics)
+  * [Spans](#spans)
 
 <!-- tocstop -->
 

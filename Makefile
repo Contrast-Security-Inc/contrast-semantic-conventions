@@ -97,13 +97,13 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --platform linux/amd64 --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions
 .PHONY: table-check
 table-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
+	docker run --platform linux/amd64 --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec \
 		otel/semconvgen:$(SEMCONVGEN_VERSION) -f /source markdown -md /spec --md-check
 
 .PHONY: schema-check

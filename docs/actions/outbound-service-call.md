@@ -22,15 +22,14 @@ This span type represents an outbound HTTP request. There are two ways this can 
    In this case, the `url.full` MUST be the absolute URL that was originally requested, before any HTTP-redirects that may happen when executing the request.
 
 <!-- semconv contrast.action.span.outbound-service-call(full) -->
-
-| Attribute                                          | Type   | Description                                                                                                                     | Examples                                                            | Requirement Level                                |
-| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------ |
-| `http.resend_count`                                | int    | The ordinal number of request resending attempt (for any reason, including redirects). [1]                                      | `3`                                                                 | Recommended: if and only if request was retried. |
-| [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name.                                                 | `10.1.2.80`; `/tmp/my.sock`                                         | Recommended: If different than `server.address`. |
-| [`network.peer.port`](../general/attributes.md)    | int    | Peer port number of the network connection.                                                                                     | `65123`                                                             | Recommended: If `network.peer.address` is set.   |
-| [`server.address`](../general/attributes.md)       | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock`                          | Required                                         |
-| [`server.port`](../general/attributes.md)          | int    | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443`                                                 | Conditionally Required: [4]                      |
-| `url.full`                                         | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [5]                   | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required                                         |
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `http.resend_count` | int | The ordinal number of request resending attempt (for any reason, including redirects). [1] | `3` | Recommended: if and only if request was retried. |
+| [`network.peer.address`](../general/attributes.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended: If different than `server.address`. |
+| [`network.peer.port`](../general/attributes.md) | int | Peer port number of the network connection. | `65123` | Recommended: If `network.peer.address` is set. |
+| [`server.address`](../general/attributes.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../general/attributes.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| `url.full` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [5] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | Required |
 
 **[1]:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
@@ -53,9 +52,9 @@ If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.
 
 Following attributes MUST be provided **at span creation time** (when provided at all), so they can be considered for sampling decisions:
 
-- [`server.address`](../general/attributes.md)
-- [`server.port`](../general/attributes.md)
-- `url.full`
+* [`server.address`](../general/attributes.md)
+* [`server.port`](../general/attributes.md)
+* `url.full`
 <!-- endsemconv -->
 
 ## outbound-service-call (http client) span duration

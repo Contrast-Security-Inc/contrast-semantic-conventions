@@ -4,7 +4,7 @@
 
 - [Definitions](#definitions)
 - [Action Span Attributes](#action-span-attributes)
-  - [Java Specific action types](#java-specific-action-types)
+  * [Java Specific action types](#java-specific-action-types)
 
 <!-- tocstop -->
 

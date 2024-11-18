@@ -9,19 +9,19 @@ Particular operations may refer to or require some of these attributes.
 <!-- toc -->
 
 - [Server, client and shared network attributes](#server-client-and-shared-network-attributes)
-  - [Address and port attributes](#address-and-port-attributes)
-  - [Server attributes](#server-attributes)
-    - [`server.address`](#serveraddress)
-  - [Client attributes](#client-attributes)
-  - [Source and destination attributes](#source-and-destination-attributes)
-    - [Source](#source)
-    - [Destination](#destination)
-  - [Other network attributes](#other-network-attributes)
-    - [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
+  * [Address and port attributes](#address-and-port-attributes)
+  * [Server attributes](#server-attributes)
+    + [`server.address`](#serveraddress)
+  * [Client attributes](#client-attributes)
+  * [Source and destination attributes](#source-and-destination-attributes)
+    + [Source](#source)
+    + [Destination](#destination)
+  * [Other network attributes](#other-network-attributes)
+    + [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes)
       - [Client/server examples using `network.peer.*`](#clientserver-examples-using-networkpeer)
-        - [Simple client/server example](#simple-clientserver-example)
-        - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
-        - [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
+        * [Simple client/server example](#simple-clientserver-example)
+        * [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
+        * [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
 - [General remote service attributes](#general-remote-service-attributes)
 - [Source Code Attributes](#source-code-attributes)
 
@@ -53,17 +53,15 @@ identify the transport, then setting [`network.transport`](#other-network-attrib
 ### Server attributes
 
 <!-- semconv server -->
-
-| Attribute        | Type   | Description                                                                                                                | Examples                                   | Requirement Level |
-| ---------------- | ------ | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------------- |
-| `server.address` | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended       |
-| `server.port`    | int    | Server port number. [2]                                                                                                    | `80`; `8080`; `443`                        | Recommended       |
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `server.address` | string | Server address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `server.port` | int | Server port number. [2] | `80`; `8080`; `443` | Recommended |
 
 **[1]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
 the server address behind any intermediaries (e.g. proxies) if it's available.
 
 **[2]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries (e.g. proxies) if it's available.
-
 <!-- endsemconv -->
 
 `server.address` and `server.port` represent logical server name and port. Semantic conventions that refer to these attributes SHOULD
@@ -88,16 +86,14 @@ For Unix domain socket, `server.address` attribute represents remote endpoint ad
 ### Client attributes
 
 <!-- semconv client -->
-
-| Attribute        | Type   | Description                                                                                                                | Examples                                          | Requirement Level |
-| ---------------- | ------ | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ----------------- |
-| `client.address` | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended       |
-| `client.port`    | int    | Client port number. [2]                                                                                                    | `65123`                                           | Recommended       |
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `client.address` | string | Client address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `client.port` | int | Client port number. [2] | `65123` | Recommended |
 
 **[1]:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries (e.g. proxies) if it's available.
 
 **[2]:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries (e.g. proxies) if it's available.
-
 <!-- endsemconv -->
 
 ### Source and destination attributes
@@ -112,14 +108,12 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 #### Source
 
 <!-- semconv source -->
-
-| Attribute        | Type   | Description                                                                                                                | Examples                                          | Requirement Level |
-| ---------------- | ------ | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ----------------- |
-| `source.address` | string | Source address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended       |
-| `source.port`    | int    | Source port number                                                                                                         | `3389`; `2888`                                    | Recommended       |
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `source.address` | string | Source address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `source.port` | int | Source port number | `3389`; `2888` | Recommended |
 
 **[1]:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries (e.g. proxies) if it's available.
-
 <!-- endsemconv -->
 
 #### Destination
@@ -127,14 +121,12 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 Destination fields capture details about the receiver of a network exchange/packet.
 
 <!-- semconv destination -->
-
-| Attribute             | Type   | Description                                                                                                                     | Examples                                               | Requirement Level |
-| --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ----------------- |
-| `destination.address` | string | Destination address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended       |
-| `destination.port`    | int    | Destination port number                                                                                                         | `3389`; `2888`                                         | Recommended       |
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `destination.address` | string | Destination address - domain name if available without reverse DNS lookup, otherwise IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `destination.port` | int | Destination port number | `3389`; `2888` | Recommended |
 
 **[1]:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries (e.g. proxies) if it's available.
-
 <!-- endsemconv -->
 
 <a name="network-attributes"></a>
@@ -147,17 +139,16 @@ Destination fields capture details about the receiver of a network exchange/pack
 > if they do not cause breaking changes to HTTP semantic conventions.
 
 <!-- semconv network-core -->
-
-| Attribute                  | Type   | Description                                                                                                                                                           | Examples                    | Requirement Level |
-| -------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ----------------- |
-| `network.local.address`    | string | Local address of the network connection - IP address or Unix domain socket name.                                                                                      | `10.1.2.80`; `/tmp/my.sock` | Recommended       |
-| `network.local.port`       | int    | Local port number of the network connection.                                                                                                                          | `65123`                     | Recommended       |
-| `network.peer.address`     | string | Peer address of the network connection - IP address or Unix domain socket name.                                                                                       | `10.1.2.80`; `/tmp/my.sock` | Recommended       |
-| `network.peer.port`        | int    | Peer port number of the network connection.                                                                                                                           | `65123`                     | Recommended       |
-| `network.protocol.name`    | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1]                                                                          | `amqp`; `http`; `mqtt`      | Recommended       |
-| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [2]                                                                                                     | `3.1.1`                     | Recommended       |
-| `network.transport`        | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp`                | Recommended       |
-| `network.type`             | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4]                                                                                  | `ipv4`; `ipv6`              | Recommended       |
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `network.local.address` | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `network.local.port` | int | Local port number of the network connection. | `65123` | Recommended |
+| `network.peer.address` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| `network.peer.port` | int | Peer port number of the network connection. | `65123` | Recommended |
+| `network.protocol.name` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | Recommended |
+| `network.protocol.version` | string | Version of the protocol specified in `network.protocol.name`. [2] | `3.1.1` | Recommended |
+| `network.transport` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://en.wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | Recommended |
+| `network.type` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | Recommended |
 
 **[1]:** The value SHOULD be normalized to lowercase.
 
@@ -173,20 +164,19 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
-| Value  | Description                              |
-| ------ | ---------------------------------------- |
-| `tcp`  | TCP                                      |
-| `udp`  | UDP                                      |
+| Value  | Description |
+|---|---|
+| `tcp` | TCP |
+| `udp` | UDP |
 | `pipe` | Named or anonymous pipe. See note below. |
-| `unix` | Unix domain socket                       |
+| `unix` | Unix domain socket |
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
 | Value  | Description |
-| ------ | ----------- |
-| `ipv4` | IPv4        |
-| `ipv6` | IPv6        |
-
+|---|---|
+| `ipv4` | IPv4 |
+| `ipv6` | IPv6 |
 <!-- endsemconv -->
 
 #### `network.peer.*` and `network.local.*` attributes
@@ -235,11 +225,9 @@ Users can define what the name of a service is based on their particular semanti
 Instrumentations SHOULD provide a way for users to configure this name.
 
 <!-- semconv peer -->
-
-| Attribute      | Type   | Description                                                                                                                                                                 | Examples         | Requirement Level |
-| -------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
-| `peer.service` | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | Recommended       |
-
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `peer.service` | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | Recommended |
 <!-- endsemconv -->
 
 Examples of `peer.service` that users may specify:
@@ -256,15 +244,12 @@ The attributes listed below allow to report this unit of code and therefore to p
 about the span.
 
 <!-- semconv code -->
-
-| Attribute         | Type   | Description                                                                                                                                                                                                    | Examples                                                                                                                                                                            | Requirement Level |
-| ----------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| `code.column`     | int    | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.                                                                           | `16`                                                                                                                                                                                | Recommended       |
-| `code.filepath`   | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path).                                                                                            | `/usr/local/MyApplication/content_root/app/index.php`                                                                                                                               | Recommended       |
-| `code.function`   | string | The method or function name, or equivalent (usually rightmost part of the code unit's name).                                                                                                                   | `serveRequest`                                                                                                                                                                      | Recommended       |
-| `code.lineno`     | int    | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.                                                                             | `42`                                                                                                                                                                                | Recommended       |
-| `code.namespace`  | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService`                                                                                                                                                         | Recommended       |
-| `code.stacktrace` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.                                                   | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5) |
-| `                 | Opt-In |
-
+| Attribute  | Type | Description  | Examples  | Requirement Level |
+|---|---|---|---|---|
+| `code.column` | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | Recommended |
+| `code.filepath` | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | Recommended |
+| `code.function` | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | Recommended |
+| `code.lineno` | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | Recommended |
+| `code.namespace` | string | The "namespace" within which `code.function` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit. | `com.example.MyHttpService` | Recommended |
+| `code.stacktrace` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | Opt-In |
 <!-- endsemconv -->
