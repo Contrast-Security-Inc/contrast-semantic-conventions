@@ -186,11 +186,12 @@ groups:
         requirement_level: required
         type: string
         brief: The code representing the expression being executed.
-        examples: [
-          "#{'String1 ' + 'string2'}",
-          "#{20 - 1}",
-          "'Just a string value'.substring(5)"
-        ]
+        examples:
+          [
+            "#{'String1 ' + 'string2'}",
+            "#{20 - 1}",
+            "'Just a string value'.substring(5)",
+          ]
   - id: contrast.action.span.el-execution
     type: span
     extends: attributes.contrast.code-exec

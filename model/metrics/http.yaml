@@ -1,7 +1,7 @@
 groups:
   - id: metric_attributes.http.server
     type: attribute_group
-    brief: 'HTTP server attributes'
+    brief: "HTTP server attributes"
     extends: attributes.http.server
     attributes:
       - ref: server.address
@@ -20,7 +20,7 @@ groups:
           > to trigger cardinality limits, degrading the usefulness of the metric.
   - id: metric_attributes.http.client
     type: attribute_group
-    brief: 'HTTP client attributes'
+    brief: "HTTP client attributes"
     extends: attributes.http.client
 
   - id: metric.http.server.request.duration

@@ -12,7 +12,7 @@ This allows easier correlation and consumption of data.
 
 Contrast standardizes on otel metrics and extend from them. See
 [OTel Semantic Conventions v1.22.0](https://github.com/open-telemetry/semantic-conventions/tree/v1.22.0/docs)
-for a foundational understanding of what we build on top of.  As newer versions of the OTel Semantic Conventions are released
+for a foundational understanding of what we build on top of. As newer versions of the OTel Semantic Conventions are released
 this document will be updated as needed to try and conform for maximum portability and usability of the data our sensors
 produce.
 

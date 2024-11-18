@@ -11,7 +11,7 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If request has ended with an error.
-        examples: ['timeout', 'name_resolution_error', '500']
+        examples: ["timeout", "name_resolution_error", "500"]
         note: |
           If the request fails with an error before response status code was sent or received,
           `error.type` SHOULD be set to exception type or a component-specific low cardinality error code.
@@ -29,15 +29,15 @@ groups:
 
           If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
       - ref: network.protocol.name
-        examples: ['http', 'spdy']
+        examples: ["http", "spdy"]
         requirement_level:
           recommended: if not default (`http`).
       - ref: network.protocol.version
-        examples: ['1.0', '1.1', '2', '3']
+        examples: ["1.0", "1.1", "2", "3"]
 
   - id: attributes.http.client
     type: attribute_group
-    brief: 'HTTP Client attributes'
+    brief: "HTTP Client attributes"
     extends: attributes.http.common
     attributes:
       - ref: server.address
@@ -64,7 +64,7 @@ groups:
 
   - id: attributes.http.server
     type: attribute_group
-    brief: 'HTTP Server attributes'
+    brief: "HTTP Server attributes"
     extends: attributes.http.common
     attributes:
       - ref: http.route

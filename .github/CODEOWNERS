@@ -1,0 +1,19 @@
+#####################################################
+#
+# List of approvers for SecObs semantic conventions repository
+#
+#####################################################
+#
+# Learn about CODEOWNERS file format:
+#  https://help.github.com/articles/about-code-owners
+#
+
+# Schemas and schema file tooling
+/schemas/                       @seschis
+/internal/tools/schema_check.sh @seschis
+
+# Actions semantic conventions approvers
+/model/actions/         @seschis
+/docs/actions/          @seschis
+
+# TODO - Add semconv area experts and groups

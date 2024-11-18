@@ -2,10 +2,10 @@ groups:
   - id: trace.http.common
     extends: attributes.http.common
     type: attribute_group
-    brief: 'This document defines semantic conventions for HTTP client and server Spans.'
+    brief: "This document defines semantic conventions for HTTP client and server Spans."
     note: >
-        These conventions can be used for http and https schemes
-        and various HTTP versions like 1.1, 2 and SPDY.
+      These conventions can be used for http and https schemes
+      and various HTTP versions like 1.1, 2 and SPDY.
     attributes:
       - ref: http.request.method_original
         requirement_level:
@@ -29,7 +29,7 @@ groups:
     type: span
     extends: attributes.http.client
     span_kind: client
-    brief: 'Semantic Convention for HTTP Client'
+    brief: "Semantic Convention for HTTP Client"
     attributes:
       - ref: http.resend_count
         requirement_level:
@@ -52,7 +52,7 @@ groups:
     type: span
     extends: attributes.http.server
     span_kind: server
-    brief: 'Semantic Convention for HTTP Server'
+    brief: "Semantic Convention for HTTP Server"
     attributes:
       - ref: http.route
       - ref: server.address
@@ -67,16 +67,16 @@ groups:
         brief: Local socket port. Useful in case of a multi-port host.
       - ref: client.address
         note: >
-            The IP address of the original client behind all proxies, if
-            known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded),
-            [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header).
-            Otherwise, the immediate client peer address.
-        examples: ['83.164.160.102']
+          The IP address of the original client behind all proxies, if
+          known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded),
+          [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For), or a similar header).
+          Otherwise, the immediate client peer address.
+        examples: ["83.164.160.102"]
       - ref: client.port
         brief: >
-            The port of the original client behind all proxies, if
-            known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header).
-            Otherwise, the immediate client peer port.
+          The port of the original client behind all proxies, if
+          known (e.g. from [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) or a similar header).
+          Otherwise, the immediate client peer port.
       - ref: network.peer.address
       - ref: network.peer.port
       - ref: url.path

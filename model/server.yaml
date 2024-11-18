@@ -16,7 +16,7 @@ groups:
         note: |
           When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
           the server address behind any intermediaries (e.g. proxies) if it's available.
-        examples: ['example.com', '10.1.2.80', '/tmp/my.sock']
+        examples: ["example.com", "10.1.2.80", "/tmp/my.sock"]
       - id: port
         type: int
         brief: Server port number.

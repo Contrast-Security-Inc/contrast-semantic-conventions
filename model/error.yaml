@@ -7,14 +7,20 @@ groups:
       report an error.
     attributes:
       - id: type
-        brief: 'Describes a class of error the operation ended with.'
+        brief: "Describes a class of error the operation ended with."
         type:
           allow_custom_values: true
           members:
             - id: other
               value: "_OTHER"
-              brief: 'A fallback error value to be used when the instrumentation does not define a custom value for it.'
-        examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', '500']
+              brief: "A fallback error value to be used when the instrumentation does not define a custom value for it."
+        examples:
+          [
+            "timeout",
+            "java.net.UnknownHostException",
+            "server_certificate_invalid",
+            "500",
+          ]
         note: |
           The `error.type` SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.

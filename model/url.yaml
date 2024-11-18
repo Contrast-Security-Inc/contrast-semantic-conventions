@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: scheme
         type: string
-        brief: 'The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol.'
+        brief: "The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol."
         examples: ["https", "ftp", "telnet"]
       - id: full
         type: string
@@ -20,20 +20,21 @@ groups:
 
           `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed)
           and SHOULD NOT be validated or modified except for sanitizing purposes.
-        examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv', '//localhost']
+        examples:
+          ["https://www.foo.bar/search?q=OpenTelemetry#SemConv", "//localhost"]
         tag: sensitive-information
       - id: path
         type: string
-        brief: 'The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component'
-        examples: ['/search']
+        brief: "The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component"
+        examples: ["/search"]
         note: When missing, the value is assumed to be `/`
       - id: query
         type: string
-        brief: 'The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component'
+        brief: "The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component"
         examples: ["q=OpenTelemetry"]
         note: Sensitive content provided in query string SHOULD be scrubbed when instrumentations can identify it.
         tag: sensitive-information
       - id: fragment
         type: string
-        brief: 'The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component'
+        brief: "The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component"
         examples: ["SemConv"]

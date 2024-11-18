@@ -2,7 +2,7 @@ groups:
   - id: registry.http
     prefix: http
     type: attribute_group
-    brief: 'This document defines semantic convention attributes in the HTTP namespace.'
+    brief: "This document defines semantic convention attributes in the HTTP namespace."
     attributes:
       - id: request.body.size
         type: int
@@ -25,42 +25,46 @@ groups:
           The attribute value MUST consist of either multiple header values as an array of strings
           or a single-item array containing a possibly comma-concatenated string, depending on the way
           the HTTP library provides access to headers.
-        examples: ['http.request.header.content_type=["application/json"]', 'http.request.header.x_forwarded_for=["1.2.3.4", "1.2.3.5"]']
+        examples:
+          [
+            'http.request.header.content_type=["application/json"]',
+            'http.request.header.x_forwarded_for=["1.2.3.4", "1.2.3.5"]',
+          ]
       - id: request.method
         type:
           allow_custom_values: true
           members:
             - id: connect
               value: "CONNECT"
-              brief: 'CONNECT method.'
+              brief: "CONNECT method."
             - id: delete
               value: "DELETE"
-              brief: 'DELETE method.'
+              brief: "DELETE method."
             - id: get
               value: "GET"
-              brief: 'GET method.'
+              brief: "GET method."
             - id: head
               value: "HEAD"
-              brief: 'HEAD method.'
+              brief: "HEAD method."
             - id: options
               value: "OPTIONS"
-              brief: 'OPTIONS method.'
+              brief: "OPTIONS method."
             - id: patch
               value: "PATCH"
-              brief: 'PATCH method.'
+              brief: "PATCH method."
             - id: post
               value: "POST"
-              brief: 'POST method.'
+              brief: "POST method."
             - id: put
               value: "PUT"
-              brief: 'PUT method.'
+              brief: "PUT method."
             - id: trace
               value: "TRACE"
-              brief: 'TRACE method.'
+              brief: "TRACE method."
             - id: other
               value: "_OTHER"
-              brief: 'Any HTTP method that the instrumentation has no prior knowledge of.'
-        brief: 'HTTP request method.'
+              brief: "Any HTTP method that the instrumentation has no prior knowledge of."
+        brief: "HTTP request method."
         examples: ["GET", "POST", "HEAD"]
         note: |
           HTTP request method value SHOULD be "known" to the instrumentation.
@@ -110,16 +114,20 @@ groups:
           The attribute value MUST consist of either multiple header values as an array of strings
           or a single-item array containing a possibly comma-concatenated string, depending on the way
           the HTTP library provides access to headers.
-        examples: ['http.response.header.content_type=["application/json"]', 'http.response.header.my_custom_header=["abc", "def"]']
+        examples:
+          [
+            'http.response.header.content_type=["application/json"]',
+            'http.response.header.my_custom_header=["abc", "def"]',
+          ]
       - id: response.status_code
         type: int
-        brief: '[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).'
+        brief: "[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)."
         examples: [200]
       - id: route
         type: string
         brief: >
-            The matched route (path template in the format used by the respective server framework). See note below
-        examples: ['/users/:userID?', '{controller}/{action}/{id?}']
+          The matched route (path template in the format used by the respective server framework). See note below
+        examples: ["/users/:userID?", "{controller}/{action}/{id?}"]
         note: >
           MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 
