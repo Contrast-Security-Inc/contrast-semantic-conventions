@@ -1,4 +1,4 @@
-# Security Observability Semantic Conventions
+# Contrast Semantic Conventions
 
 The Semantic Conventions define a common set of (semantic) attributes which
 provide meaning to data when collecting, producing and consuming it.

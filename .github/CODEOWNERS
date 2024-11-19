@@ -1,6 +1,6 @@
 #####################################################
 #
-# List of approvers for SecObs semantic conventions repository
+# List of approvers for Contrast Semantic Conventions repository
 #
 #####################################################
 #
@@ -9,11 +9,6 @@
 #
 
 # Schemas and schema file tooling
-/schemas/                       @seschis
-/internal/tools/schema_check.sh @seschis
-
-# Actions semantic conventions approvers
-/model/actions/         @seschis
-/docs/actions/          @seschis
+/                       @seschis
 
 # TODO - Add semconv area experts and groups

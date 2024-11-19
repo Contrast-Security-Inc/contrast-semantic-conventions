@@ -1,4 +1,8 @@
-# Security Observability Semantic Conventions
+# <img src="https://www.contrastsecurity.com/hubfs/favicon.png" alt="Contrast Icon" width="50" height=""> Contrast Semantic Conventions
+
+[![Checks](https://github.com/Contrast-Security-OSS/contrast-semantic-conventions/workflows/Checks/badge.svg?branch=main)](https://github.com/Contrast-Security-OSS/contrast-semantic-conventions/actions?query=workflow%3A%22Checks%22+branch%3Amain)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/open-telemetry/semantic-conventions.svg?logo=opentelemetry&&color=f5a800&label=Latest%20release)](https://github.com/open-telemetry/semantic-conventions/releases/latest)
+[![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.37.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.37.0)
 
 This repo is built on top of [this otel specification version][SpecificationVersion]
 
@@ -27,16 +31,10 @@ This standard will be used for all signal data sent by Contrast sensors to that
 proper dimensional correlation/association can be performed on the backend data
 across all of our products.
 
-## Model Definition Files
+## Read the docs
 
-The model definition files have a particular schema associated to them that the
-opentelemetry [semconvgen](https://github.com/open-telemetry/build-tools/blob/v0.22.0/semantic-conventions/README.md)
-build tool interprets and processes. `semconvgen` is used to generate
-documentation data from the definition files. Specific language agents can use
-these definition files to generate library code.
-
-The model definitions use a syntax defined at
-[Semantic Convention YAML Language](https://raw.githubusercontent.com/open-telemetry/build-tools/v0.22.0/semantic-conventions/syntax.md)
+The human-readable version of the semantic conventions resides in the [docs](docs/README.md) folder.
+Major parts of these Markdown documents are generated from the YAML definitions located in the [model](model/README.md) folder.
 
 ## Releases
 
@@ -47,11 +45,5 @@ in use simultaneously by different agent instances.
 The Contrast Semantic Conventions version will encompass the version of the addendum
 here and the core semantic conventions version which is [v1.22.0](https://github.com/open-telemetry/semantic-conventions/releases/tag/v1.22.0)
 at the time of this writing.
-
-## Consuming the Semantic Convention Documentation
-
-The markdown documentation along with any generated table information from
-the definition files can be consumed by just pointing a browser to the `docs/`
-directory in this repo.
 
 [SpecificationVersion]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0
