@@ -31,11 +31,10 @@ groups:
               value: "PRODUCTION"
               brief: "production environment"
   - id: registry.contrast.action
-    prefix: contrast
     type: attribute_group
     brief: "This document defines semantic convention attributes in the Contrast namespace"
     attributes:
-      - id: action
+      - id: contrast.action
         brief: >
           The type of action that was observed.
         requirement_level: required
@@ -84,11 +83,10 @@ groups:
 
 
   - id: contrast.action.authn
-    prefix: contrast.authentication
     type: attribute_group
     brief: "Describes attributes for Contrast Action span of type authn-request"
     attributes:
-      - id: mechanism
+      - id: contrast.authentication.mechanism
         brief: >
           An authentication mechanism is a specific method or approach used to
           verify the identity of a user, system, or entity attempting to access a resource.
@@ -112,7 +110,7 @@ groups:
               value: "mfa"
               brief: "Two or more of the above mechanisms are used"
 
-      - id: protocol
+      - id: contrast.authentication.protocol
         brief: >
           An authentication protocol is a set of rules and procedures that
           dictate how authentication mechanisms should operate to establish
@@ -136,12 +134,11 @@ groups:
 
 
   - id: contrast.action.authz
-    prefix: contrast.authorization
     type: attribute_group
     brief: >
       Describes attributes for Contrast Action span of type authz-request
     attributes:
-      - id: mechanism
+      - id: contrast.authorization.mechanism
         brief: >
           How are authz decisions made for the resource.
         examples: [rbac, dac, pbac]
@@ -172,19 +169,19 @@ groups:
               value: "tbac"
               brief: Time Based Access Control
 
-      - id: rbac.role
+      - id: contrast.authorization.rbac.role
         brief: >
           Role Requested for authz check. The values here are very domain specific, but
           will always be normalized to a lowercase value in the data here.
         examples: [user, editor, manager]
         type: string
-      - id: dac.permission
+      - id: contrast.authorization.dac.permission
         brief: >
           Permission requested for access to the resource. The values here are very domain specific, but
           will always be normalized to a lowercase value in the data here.
         examples: [read, write, append, delete]
         type: string
-      - id: mac.labels
+      - id: contrast.authorization.mac.labels
         brief: >
           Labels on the requested resource. The values here are very domain specific, but
           will always be normalized to a lowercase value in the data here.
@@ -192,17 +189,16 @@ groups:
         type: string
 
   - id: contrast.action.file-open-create
-    prefix: contrast.file.open
     type: attribute_group
     brief: >
       Describes attributes for Contrast Action span of type file-open-create.
     attributes:
-      - id: path
+      - id: contrast.file.open.path
         brief: >
           The absolute path that was accessed.
         examples: [/etc/myconfig, /foo/bar, /some/tmp]
         type: string
-      - id: flags
+      - id: contrast.file.open.flags
         brief: >
           The flags used when the file was opened or created.
         examples: [o_rdonly, o_rdwr]

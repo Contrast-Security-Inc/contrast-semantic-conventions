@@ -1,5 +1,5 @@
 groups:
-  - id: contrast.action.span.authn
+  - id: span.contrast.action.authn
     type: span
     brief: "Describes attributes for Contrast Authentication Action spans"
     attributes:
@@ -12,7 +12,7 @@ groups:
       - ref: contrast.authorization.mac.labels
         requirement_level: recommended
 
-  - id: contrast.action.span.authz
+  - id: span.contrast.action.authz
     type: span
     brief: "Describes attributes for Contrast Authorization Action spans"
     attributes:
@@ -28,7 +28,7 @@ groups:
         requirement_level:
           recommended: If mechanism is 'mac'
 
-  - id: contrast.action.span.file-open-create
+  - id: span.contrast.action.file-open-create
     type: span
     brief: >
       Describes attributes for Contrast Action span of type file-open-create.
@@ -38,7 +38,7 @@ groups:
       - ref: contrast.file.open.flags
         requirement_level: recommended
 
-  - id: contrast.action.span.host-cmd-exec
+  - id: span.contrast.action.host-cmd-exec
     type: span
     brief: >
       Describes attributes for Contrast Action span of type host-cmd-exec.
@@ -46,20 +46,20 @@ groups:
       - ref: contrast.file.open.path
       #- ref: contrast.host-cmd-exec.cmd
 
-  - id: contrast.action.span.outbound-service-call
+  - id: span.contrast.action.span.outbound-service-call
     type: span
     extends: trace.http.client
     brief: >
       Describes attributes for Contrast Action span of type outbound-service-call.
       These actions are always using the http protocol.
 
-  - id: contrast.action.span.el-execution
+  - id: span.contrast.action.el-execution
     type: span
     extends: contrast.code-exec
     brief: >
       Describes attributes for Contrast Action span of type el-execution. The Spring Expression Language (SpEL for short) is a
       powerful expression language that supports querying and manipulating an object graph at runtime.
-  - id: contrast.action.span.ognl-execution
+  - id: span.contrast.action.ognl-execution
     extends: contrast.code-exec
     type: span
     brief: >
