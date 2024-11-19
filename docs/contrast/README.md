@@ -40,7 +40,7 @@ action nor will it contain enough information to determine the action execution 
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-**type:** `contrast`
+**type:** `none`
 
 **Description:** Additional attributes for Contrast Sensors to provide
 

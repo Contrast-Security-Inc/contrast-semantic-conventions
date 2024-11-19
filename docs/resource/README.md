@@ -235,7 +235,7 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-**type:** `contrast`
+**type:** `none`
 
 **Description:** Additional attributes for Contrast Sensors to provide
 

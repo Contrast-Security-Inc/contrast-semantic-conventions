@@ -15,6 +15,7 @@ groups:
 
   - id: metric.http.server.action.total
     type: metric
+    stability: experimental
     extends: metric_attributes.contrast.action
     metric_name: http.server.action.total
     unit: "{action}"

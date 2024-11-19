@@ -22,12 +22,15 @@ groups:
           allow_custom_values: false
           members:
             - id: qa
+              stability: experimental
               value: "QA"
               brief: "quality assurance environment"
             - id: dev
+              stability: experimental
               value: "DEVELOPMENT"
               brief: "development environment"
             - id: prod
+              stability: experimental
               value: "PRODUCTION"
               brief: "production environment"
   - id: registry.contrast.action
@@ -45,39 +48,51 @@ groups:
           allow_custom_values: false
           members:
             - id: storage-query
+              stability: experimental
               value: "storage-query"
               brief: "Functions that execute queries"
             - id: file-open-create
+              stability: experimental
               value: "file-open-create"
               brief: "file open or create action"
             - id: url-forward
+              stability: experimental
               value: "url-forward"
               brief: "Any function designed to forward a request to another URL"
             - id: url-redirect
+              stability: experimental
               value: "url-redirect"
               brief: "Function that result in an http 302 redirect code sent to the client"
             - id: host-cmd-exec
+              stability: experimental
               value: "host-cmd-exec"
               brief: "system shell command execution"
             - id: ldap-query
+              stability: experimental
               value: "ldap-query"
               brief: "Functions that result in and ldap query operation"
             - id: smtp-exec
+              stability: experimental
               value: "smtp-exec"
               brief: "Functions that result in an SMTP command execution"
             - id: outbound-service-call
+              stability: experimental
               value: "outbound-service-call"
               brief: "Functions that result in external calls to other services"
             - id: authn-request
+              stability: experimental
               value: "authn-request"
               brief: "Functions that perform authentication actions"
             - id: authz-request
+              stability: experimental
               value: "authz-request"
               brief: "Functions that perform authorization actions"
             - id: el-execution
+              stability: experimental
               value: "el-execution"
               brief: "Spring expression language execution"
             - id: ognl-execution
+              stability: experimental
               value: "ognl-execution"
               brief: "Object-Graph Navigation Language expression execution."
 
@@ -96,18 +111,23 @@ groups:
           allow_custom_values: false
           members:
             - id: password
+              stability: experimental
               value: "password"
               brief: "Users provide a username and password."
             - id: certificate
+              stability: experimental
               value: "certificate"
               brief: "x509 certificate authentication or similar"
             - id: token
+              stability: experimental
               value: "token"
               brief: "Involves using a physical or virtual token to authenticate a user"
             - id: biometric
+              stability: experimental
               value: "biometric"
               brief: "file open or create action"
             - id: mfa
+              stability: experimental
               value: "mfa"
               brief: "Two or more of the above mechanisms are used"
 
@@ -122,15 +142,19 @@ groups:
           allow_custom_values: false
           members:
             - id: saml
+              stability: experimental
               value: "saml"
               brief: "Security Assertion Markup Language"
             - id: oauth
+              stability: experimental
               value: "oauth"
               brief: "Open Authentication and OIDC"
             - id: ldap
+              stability: experimental
               value: "ldap"
               brief: "Lightweight Directory Access Protocol"
             - id: kerberos
+              stability: experimental
               value: "kerberos"
               brief: ""
 
@@ -149,26 +173,33 @@ groups:
           allow_custom_values: false
           members:
             - id: rbac
+              stability: experimental
               value: "rbac"
               brief: Role Based Access Control
             - id: abac
+              stability: experimental
               value: "abac"
               brief: Attribute Based Access Control
             - id: mac
+              stability: experimental
               value: "mac"
               brief: >
                 Mandatory Access Control (MAC) is a security model where access to resources is determined by
                 the security labels assigned to subjects (users or processes) and objects (resources).
             - id: dac
+              stability: experimental
               value: "dac"
               brief: Discretionary Access Control (DAC) is a model where owners of resources have the discretion to control access to their resources.
             - id: pbac
+              stability: experimental
               value: "pbac"
               brief: Policy Based Access Control
             - id: hbac
+              stability: experimental
               value: "hbac"
               brief: History Based Access Control
             - id: tbac
+              stability: experimental
               value: "tbac"
               brief: Time Based Access Control
 
@@ -214,12 +245,15 @@ groups:
           allow_custom_values: false
           members:
             - id: o_rdonly
+              stability: experimental
               value: o_rdonly
               brief: Read only access
             - id: o_wronly
+              stability: experimental
               value: o_wronly
               brief: Write only access
             - id: o_rdwr
+              stability: experimental
               value: o_rdwr
               brief: Read/write access
 
