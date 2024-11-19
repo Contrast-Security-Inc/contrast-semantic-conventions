@@ -46,7 +46,7 @@ groups:
       - ref: contrast.file.open.path
       #- ref: contrast.host-cmd-exec.cmd
 
-  - id: span.contrast.action.span.outbound-service-call
+  - id: span.contrast.action.outbound-service-call
     type: span
     extends: trace.http.client
     brief: >
