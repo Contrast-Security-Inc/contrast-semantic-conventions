@@ -2,6 +2,18 @@
   "ignorePatterns": [
     {
       "pattern": "^https://github\\.com/Contrast-Security-Inc/secobs-semantic-conventions/(issues|pull)"
+    },
+    {
+      "pattern": "^https://github\\.com/Contrast-Security-OSS/secobs-semantic-conventions/(issues|pull)"
+    },
+    {
+      "pattern": "^https://github\\.com/open-telemetry/semantic-conventions/(issues|pull|actions)"
+    },
+    {
+      "pattern": "^https://github\\.com/Contrast-Security-OSS/contrast-semantic-conventions/(issues|pull|actions)"
+    },
+    {
+      "pattern": "^#"
     }
   ],
   "replacementPatterns": [
@@ -11,6 +23,14 @@
     },
     {
       "pattern": "^https://github.com/Contrast-Security-Inc/secobs-semantic-conventions/(blob|tree)/[^/]+/docs/",
+      "replacement": "LINK-CHECK-ERROR-USE-LOCAL-PATH-TO-DOC-PAGE-NOT-EXTERNAL-URL/"
+    },
+    {
+      "pattern": "^https://github.com/Contrast-Security-OSS/secobs-semantic-conventions/(blob|tree)/[^/]+/docs/",
+      "replacement": "LINK-CHECK-ERROR-USE-LOCAL-PATH-TO-DOC-PAGE-NOT-EXTERNAL-URL/"
+    },
+    {
+      "pattern": "^https://github.com/Contrast-Security-OSS/contrast-semantic-conventions/(blob|tree)/[^/]+/docs/",
       "replacement": "LINK-CHECK-ERROR-USE-LOCAL-PATH-TO-DOC-PAGE-NOT-EXTERNAL-URL/"
     }
   ],

@@ -1,0 +1,68 @@
+groups:
+  - id: contrast.action.span.authn
+    type: span
+    brief: "Describes attributes for Contrast Authentication Action spans"
+    attributes:
+      - ref: contrast.authentication.mechanism
+        requirement_level: recommended
+      - ref: contrast.authentication.protocol
+        requirement_level: recommended
+      - ref: contrast.authorization.dac.permission
+        requirement_level: recommended
+      - ref: contrast.authorization.mac.labels
+        requirement_level: recommended
+
+  - id: contrast.action.span.authz
+    type: span
+    brief: "Describes attributes for Contrast Authorization Action spans"
+    attributes:
+      - ref: contrast.authorization.mechanism
+        requirement_level: recommended
+      - ref: contrast.authorization.rbac.role
+        requirement_level:
+          recommended: If mechanism is 'rbac'
+      - ref: contrast.authorization.dac.permission
+        requirement_level:
+          recommended: If mechanism is 'dac'
+      - ref: contrast.authorization.mac.labels
+        requirement_level:
+          recommended: If mechanism is 'mac'
+
+  - id: contrast.action.span.file-open-create
+    type: span
+    brief: >
+      Describes attributes for Contrast Action span of type file-open-create.
+    attributes:
+      - ref: contrast.file.open.path
+        requirement_level: required
+      - ref: contrast.file.open.flags
+        requirement_level: recommended
+
+  - id: contrast.action.span.host-cmd-exec
+    type: span
+    brief: >
+      Describes attributes for Contrast Action span of type host-cmd-exec.
+    attributes:
+      - ref: contrast.file.open.path
+      #- ref: contrast.host-cmd-exec.cmd
+
+  - id: contrast.action.span.outbound-service-call
+    type: span
+    extends: trace.http.client
+    brief: >
+      Describes attributes for Contrast Action span of type outbound-service-call.
+      These actions are always using the http protocol.
+
+  - id: contrast.action.span.el-execution
+    type: span
+    extends: contrast.code-exec
+    brief: >
+      Describes attributes for Contrast Action span of type el-execution. The Spring Expression Language (SpEL for short) is a
+      powerful expression language that supports querying and manipulating an object graph at runtime.
+  - id: contrast.action.span.ognl-execution
+    extends: contrast.code-exec
+    type: span
+    brief: >
+      Describes attributes for Contrast Action span of type ognl-execution. OGNL stands for Object-Graph Navigation Language.
+      It is an expression language for getting and setting properties of Java objects, plus other extras such as list projection
+      and selection and lambda expressions. You use the same expression for both getting and setting the value of a property.

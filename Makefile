@@ -44,7 +44,7 @@ SEMCONVGEN_VERSION=0.22.0
 OTEL_SEMCONV_VERSION=1.22.0
 
 .PHONY: all
-all: install-tools markdown-toc table-generation fix-format check yamllint \
+all: install-tools markdown-toc table-generation fix-format check yamllint schema-check \
 		 check-file-and-folder-names-in-docs
 
 .PHONY: check-file-and-folder-names-in-docs
@@ -74,6 +74,12 @@ markdown-link-check:
 		npx --no -- markdown-link-check --quiet --config .markdown_link_check_config.json $$f \
 			|| exit 1; \
 	done
+
+.PHONY: markdown-link-check-changelog-preview
+markdown-link-check-changelog-preview:
+	@if ! npm ls markdown-link-check; then npm install; fi
+	npx --no -- markdown-link-check --quiet --config .markdown_link_check_config.json changelog_preview.md;
+
 
 # This target runs markdown-toc on all files that contain
 # a comment <!-- tocstop -->.
@@ -178,15 +184,49 @@ fix-format:
 
 # Run all checks in order of speed / likely failure.
 .PHONY: check
-check: misspell markdownlint markdown-link-check check-format
+check: misspell markdownlint attribute-registry-generation markdown-link-check check-format check-policies
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation misspell-correction fix-format
+fix: table-generation attribute-registry-generation misspell-correction fix-format
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
 install-tools: $(MISSPELL)
 	npm install
 	@echo "All tools installed"
+
+# A previous iteration of calculating "LATEST_RELEASED_SEMCONV_VERSION"
+# relied on "git describe". However, that approach does not work with
+# light-weight developer forks/branches that haven't synced tags. Hence the
+# more complex implementation of this using "git ls-remote".
+#
+# The output of "git ls-remote" looks something like this:
+#
+#    e531541025992b68177a68b87628c5dc75c4f7d9        refs/tags/v1.21.0
+#    cadfe53949266d33476b15ca52c92f682600a29c        refs/tags/v1.22.0
+#    ...
+#
+# .. which is why some additional processing is required to extract the
+# latest version number and strip off the "v" prefix.
+LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
+.PHONY: check-policies
+check-policies:
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		${WEAVER_CONTAINER} registry check \
+		--registry=/home/weaver/source \
+		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
+		--policy=/home/weaver/policies
+
+# Test rego policies
+.PHONY: test-policies
+test-policies:
+	docker run --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
+	${OPA_CONTAINER} test \
+    --var-values \
+	--explain fails \
+	/policies \
+	/policies_test

@@ -1,9 +1,17 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Metrics
+aliases: [metrics-general]
+--->
+
 # Metrics Semantic Conventions
+
+**Status**: [Mixed][DocumentStatus]
 
 <!-- toc -->
 
 - [General Guidelines](#general-guidelines)
   * [Name Reuse Prohibition](#name-reuse-prohibition)
+  * [Metric attributes](#metric-attributes)
   * [Units](#units)
   * [Naming rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     + [Pluralization](#pluralization)
@@ -19,15 +27,17 @@
 
 The following semantic conventions surrounding metrics are defined:
 
-- **[General Guidelines](#general-guidelines): General metrics guidelines.**
-- [Actions](../actions/action-metrics.md): For Contrast Action metrics.
-- [HTTP](../http/http-metrics.md): For HTTP client and server metrics.
+* **[General Guidelines](#general-guidelines): General metrics guidelines.**
+* [HTTP](/docs/http/http-metrics.md): For HTTP client and server metrics.
+* [RPC](/docs/rpc/rpc-metrics.md): For RPC client and server metrics.
 
-Apart from semantic conventions for metrics, [traces](trace.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/resource/sdk.md) with
-their own [Resource Semantic Conventions](../resource/README.md).
+Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/resource/sdk.md) with
+their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General Guidelines
+
+**Status**: [Experimental][DocumentStatus]
 
 Metric names and attributes exist within a single universe and a single
 hierarchy. Metric names and attributes MUST be considered within the universe of
@@ -64,6 +74,9 @@ and confusion for end users. (For example, prefer `process.runtime.java.gc*` ove
 `process.runtime.gc.*`.) Measures of many operating system metrics are similarly
 ambiguous.
 
+Metric names and attributes SHOULD follow the general
+[name abbreviation guidelines](attribute-naming.md#name-abbreviation-guidelines).
+
 ### Name Reuse Prohibition
 
 A new metric MUST NOT be added with the same name as a metric that existed in
@@ -72,6 +85,26 @@ the past but was renamed (with a corresponding schema file).
 When introducing a new metric name check all existing schema files to make sure
 the name does not appear as a key of any "rename_metrics" section (keys denote
 old metric names in rename operations).
+
+### Metric attributes
+
+Metric attributes SHOULD follow the general [attribute naming rules](attribute-naming.md).
+In particular, metric attributes SHOULD have a namespace.
+
+Metric attributes SHOULD be added under the metric namespace when their usage and
+semantics are exclusive to the metric.
+
+Examples:
+
+Attributes `mode` and `mountpoint` for metric `system.filesystem.usage`
+should be namespaced as `system.filesystem.mode` and `system.filesystem.mountpoint`.
+
+Metrics can also have attributes outside of their namespace.
+
+Examples:
+
+Metric `http.server.request.duration` uses attributes from the registry such as
+`server.port`, `error.type`.
 
 ### Units
 
@@ -83,7 +116,7 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.26.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Naming rules for Counters and UpDownCounters
 
@@ -99,10 +132,10 @@ question is a non-unit (like `{fault}` or `{operation}`).
 
 Examples:
 
-- `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
-  should not be pluralized, even if many data points are recorded.
-- `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
-  should be pluralized, even if only a single data point is recorded.
+* `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
+should not be pluralized, even if many data points are recorded.
+* `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
+should be pluralized, even if only a single data point is recorded.
 
 #### Use `count` Instead of Pluralization for UpDownCounters
 
@@ -123,38 +156,42 @@ be confusing in delta backends.
 
 ## General Metric Semantic Conventions
 
+**Status**: [Mixed][DocumentStatus]
+
 The following semantic conventions aim to keep naming consistent. They
 provide guidelines for most of the cases in this specification and should be
 followed for other instruments not explicitly defined in this document.
 
 ### Instrument Naming
 
+**Status**: [Experimental][DocumentStatus]
+
 - **limit** - an instrument that measures the constant, known total amount of
-  something should be called `entity.limit`. For example, `system.memory.limit`
-  for the total amount of memory on a system.
+something should be called `entity.limit`. For example, `system.memory.limit`
+for the total amount of memory on a system.
 
 - **usage** - an instrument that measures an amount used out of a known total
-  (**limit**) amount should be called `entity.usage`. For example,
-  `system.memory.usage` with attribute `state = used | cached | free | ...` for the
-  amount of memory in a each state. Where appropriate, the sum of **usage**
-  over all attribute values SHOULD be equal to the **limit**.
+(**limit**) amount should be called `entity.usage`. For example,
+`system.memory.usage` with attribute `state = used | cached | free | ...` for the
+amount of memory in a each state. Where appropriate, the sum of **usage**
+over all attribute values SHOULD be equal to the **limit**.
 
   A measure of the amount consumed of an unlimited resource, or of a resource
   whose limit is unknowable, is differentiated from **usage**. For example, the
   maximum possible amount of virtual memory that a process may consume may
   fluctuate over time and is not typically known.
 
-- **utilization** - an instrument that measures the _fraction_ of **usage**
-  out of its **limit** should be called `entity.utilization`. For example,
-  `system.memory.utilization` for the fraction of memory in use. Utilization can
-  be with respect to a fixed limit or a soft limit. Utilization values are
-  represended as a ratio and are typically in the range `[0, 1]`, but may go above 1
-  in case of exceeding a soft limit.
+- **utilization** - an instrument that measures the *fraction* of **usage**
+out of its **limit** should be called `entity.utilization`. For example,
+`system.memory.utilization` for the fraction of memory in use. Utilization can
+be with respect to a fixed limit or a soft limit. Utilization values are
+represented as a ratio and are typically in the range `[0, 1]`, but may go above 1
+in case of exceeding a soft limit.
 
 - **time** - an instrument that measures passage of time should be called
-  `entity.time`. For example, `system.cpu.time` with attribute `state = idle | user
+`entity.time`. For example, `system.cpu.time` with attribute `state = idle | user
 | system | ...`. **time** measurements are not necessarily wall time and can
-  be less than or greater than the real wall time between measurements.
+be less than or greater than the real wall time between measurements.
 
   **time** instruments are a special case of **usage** metrics, where the
   **limit** can usually be calculated as the sum of **time** over all attribute
@@ -164,29 +201,31 @@ followed for other instruments not explicitly defined in this document.
   elapsed time and number of CPUs.
 
 - **io** - an instrument that measures bidirectional data flow should be
-  called `entity.io` and have attributes for direction. For example,
-  `system.network.io`.
+called `entity.io` and have attributes for direction. For example,
+`system.network.io`.
 
 - Other instruments that do not fit the above descriptions may be named more
-  freely. For example, `system.paging.faults` and `system.network.packets`.
-  Units do not need to be specified in the names since they are included during
-  instrument creation, but can be added if there is ambiguity.
+freely. For example, `system.paging.faults` and `system.network.packets`.
+Units do not need to be specified in the names since they are included during
+instrument creation, but can be added if there is ambiguity.
 
 ### Instrument Units
+
+**Status**: [Stable][DocumentStatus]
 
 Units should follow the
 [Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html).
 
 - Instruments for **utilization** metrics (that measure the fraction out of a
-  total) are dimensionless and SHOULD use the default unit `1` (the unity).
+total) are dimensionless and SHOULD use the default unit `1` (the unity).
 - All non-units that use curly braces to annotate a quantity need to match the
   grammatical number of the quantity it represent. For example if measuring the
   number of individual requests to a process the unit would be `{request}`, not
   `{requests}`.
 - Instruments that measure an integer count of something SHOULD only use
-  [annotations](https://ucum.org/ucum.html#para-curly) with curly braces to
-  give additional meaning _without_ the leading default unit (`1`). For example,
-  use `{packet}`, `{error}`, `{fault}`, etc.
+[annotations](https://ucum.org/ucum.html#para-curly) with curly braces to
+give additional meaning *without* the leading default unit (`1`). For example,
+use `{packet}`, `{error}`, `{fault}`, etc.
 - Instrument units other than `1` and those that use
   [annotations](https://ucum.org/ucum.html#para-curly) SHOULD be specified using
   the UCUM case sensitive ("c/s") variant.
@@ -197,6 +236,8 @@ Units should follow the
 
 ### Instrument Types
 
+**Status**: [Stable][DocumentStatus]
+
 The semantic metric conventions specification is written to use the names of the synchronous instrument types,
 like `Counter` or `UpDownCounter`. However, compliant implementations MAY use the asynchronous equivalent instead,
 like `Asynchronous Counter` or `Asynchronous UpDownCounter`.
@@ -205,9 +246,13 @@ implementation detail. Both choices are compliant with this specification.
 
 ### Consistent UpDownCounter timeseries
 
+**Status**: [Experimental][DocumentStatus]
+
 When recording `UpDownCounter` metrics, the same attribute values used to record an increment SHOULD be used to record
 any associated decrement, otherwise those increments and decrements will end up as different timeseries.
 
 For example, if you are tracking `active_requests` with an `UpDownCounter`, and you are incrementing it each time a
 request starts and decrementing it each time a request ends, then any attributes which are not yet available when
 incrementing the counter at request start should not be used when decrementing the counter at request end.
+
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

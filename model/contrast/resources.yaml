@@ -1,0 +1,11 @@
+groups:
+  - id: contrast.resource
+    type: resource
+    name: contrast
+    brief: >
+      Additional attributes for Contrast Sensors to provide
+    attributes:
+      - ref: contrast.semconv.version
+        requirement_level: required
+      - ref: otel.semconv.version
+        requirement_level: required

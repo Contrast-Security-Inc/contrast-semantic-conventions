@@ -1,0 +1,260 @@
+groups:
+  - id: registry.contrast.resource
+    type: attribute_group
+    brief: "contrast defined resources for observability data"
+    attributes:
+      - id: contrast.semconv.version
+        requirement_level: required
+        brief: The version of contrast semantic conventions that the data adheres to.
+        type: string
+        examples:
+          - "0.1.0"
+      - id: otel.semconv.version
+        requirement_level: required
+        brief: The version of otel semantic conventions that the data adheres to.
+        type: string
+        examples:
+          - "1.22.0"
+      - id: deployment
+        requirement_level: required
+        brief: "deployment environment"
+        type:
+          allow_custom_values: false
+          members:
+            - id: qa
+              value: "QA"
+              brief: "quality assurance environment"
+            - id: dev
+              value: "DEVELOPMENT"
+              brief: "development environment"
+            - id: prod
+              value: "PRODUCTION"
+              brief: "production environment"
+  - id: registry.contrast.action
+    prefix: contrast
+    type: attribute_group
+    brief: "This document defines semantic convention attributes in the Contrast namespace"
+    attributes:
+      - id: action
+        brief: >
+          The type of action that was observed.
+        requirement_level: required
+        examples:
+          - file-open-create
+          - authn-request
+        type:
+          allow_custom_values: false
+          members:
+            - id: storage-query
+              value: "storage-query"
+              brief: "Functions that execute queries"
+            - id: file-open-create
+              value: "file-open-create"
+              brief: "file open or create action"
+            - id: url-forward
+              value: "url-forward"
+              brief: "Any function designed to forward a request to another URL"
+            - id: url-redirect
+              value: "url-redirect"
+              brief: "Function that result in an http 302 redirect code sent to the client"
+            - id: host-cmd-exec
+              value: "host-cmd-exec"
+              brief: "system shell command execution"
+            - id: ldap-query
+              value: "ldap-query"
+              brief: "Functions that result in and ldap query operation"
+            - id: smtp-exec
+              value: "smtp-exec"
+              brief: "Functions that result in an SMTP command execution"
+            - id: outbound-service-call
+              value: "outbound-service-call"
+              brief: "Functions that result in external calls to other services"
+            - id: authn-request
+              value: "authn-request"
+              brief: "Functions that perform authentication actions"
+            - id: authz-request
+              value: "authz-request"
+              brief: "Functions that perform authorization actions"
+            - id: el-execution
+              value: "el-execution"
+              brief: "Spring expression language execution"
+            - id: ognl-execution
+              value: "ognl-execution"
+              brief: "Object-Graph Navigation Language expression execution."
+
+
+  - id: contrast.action.authn
+    prefix: contrast.authentication
+    type: attribute_group
+    brief: "Describes attributes for Contrast Action span of type authn-request"
+    attributes:
+      - id: mechanism
+        brief: >
+          An authentication mechanism is a specific method or approach used to
+          verify the identity of a user, system, or entity attempting to access a resource.
+        examples: [ password, token, biometric ]
+        type:
+          allow_custom_values: false
+          members:
+            - id: password
+              value: "password"
+              brief: "Users provide a username and password."
+            - id: certificate
+              value: "certificate"
+              brief: "x509 certificate authentication or similar"
+            - id: token
+              value: "token"
+              brief: "Involves using a physical or virtual token to authenticate a user"
+            - id: biometric
+              value: "biometric"
+              brief: "file open or create action"
+            - id: mfa
+              value: "mfa"
+              brief: "Two or more of the above mechanisms are used"
+
+      - id: protocol
+        brief: >
+          An authentication protocol is a set of rules and procedures that
+          dictate how authentication mechanisms should operate to establish
+          trust and verify identities securely.
+        examples: [ oauth, saml, ldap, custom ]
+        type:
+          allow_custom_values: false
+          members:
+            - id: saml
+              value: "saml"
+              brief: "Security Assertion Markup Language"
+            - id: oauth
+              value: "oauth"
+              brief: "Open Authentication and OIDC"
+            - id: ldap
+              value: "ldap"
+              brief: "Lightweight Directory Access Protocol"
+            - id: kerberos
+              value: "kerberos"
+              brief: ""
+
+
+  - id: contrast.action.authz
+    prefix: contrast.authorization
+    type: attribute_group
+    brief: >
+      Describes attributes for Contrast Action span of type authz-request
+    attributes:
+      - id: mechanism
+        brief: >
+          How are authz decisions made for the resource.
+        examples: [rbac, dac, pbac]
+        type:
+          allow_custom_values: false
+          members:
+            - id: rbac
+              value: "rbac"
+              brief: Role Based Access Control
+            - id: abac
+              value: "abac"
+              brief: Attribute Based Access Control
+            - id: mac
+              value: "mac"
+              brief: >
+                Mandatory Access Control (MAC) is a security model where access to resources is determined by
+                the security labels assigned to subjects (users or processes) and objects (resources).
+            - id: dac
+              value: "dac"
+              brief: Discretionary Access Control (DAC) is a model where owners of resources have the discretion to control access to their resources.
+            - id: pbac
+              value: "pbac"
+              brief: Policy Based Access Control
+            - id: hbac
+              value: "hbac"
+              brief: History Based Access Control
+            - id: tbac
+              value: "tbac"
+              brief: Time Based Access Control
+
+      - id: rbac.role
+        brief: >
+          Role Requested for authz check. The values here are very domain specific, but
+          will always be normalized to a lowercase value in the data here.
+        examples: [user, editor, manager]
+        type: string
+      - id: dac.permission
+        brief: >
+          Permission requested for access to the resource. The values here are very domain specific, but
+          will always be normalized to a lowercase value in the data here.
+        examples: [read, write, append, delete]
+        type: string
+      - id: mac.labels
+        brief: >
+          Labels on the requested resource. The values here are very domain specific, but
+          will always be normalized to a lowercase value in the data here.
+        examples: [top_secret, confidential, internal, public]
+        type: string
+
+  - id: contrast.action.file-open-create
+    prefix: contrast.file.open
+    type: attribute_group
+    brief: >
+      Describes attributes for Contrast Action span of type file-open-create.
+    attributes:
+      - id: path
+        brief: >
+          The absolute path that was accessed.
+        examples: [/etc/myconfig, /foo/bar, /some/tmp]
+        type: string
+      - id: flags
+        brief: >
+          The flags used when the file was opened or created.
+        examples: [o_rdonly, o_rdwr]
+        type:
+          allow_custom_values: false
+          members:
+            - id: o_rdonly
+              value: o_rdonly
+              brief: Read only access
+            - id: o_wronly
+              value: o_wronly
+              brief: Write only access
+            - id: o_rdwr
+              value: o_rdwr
+              brief: Read/write access
+
+  - id: contrast.host-cmd-exec
+    type: attribute_group
+    brief: >
+      Describes attributes for Contrast Action span of type host-cmd-exec.
+    attributes:
+      - id: cmd
+        brief: >
+          String of executed command with its arguments.
+        examples: [ls /foo, bash -c somebin, chmod 755 foobar]
+        type: string
+
+
+  - id: contrast.code-exec
+    type: attribute_group
+    brief: Attributes that refer to code execution operations
+    attributes:
+      - id: contrast.code.contents
+        requirement_level: required
+        type: string
+        brief: The code representing the expression being executed.
+        examples:
+          [
+            "#{'String1 ' + 'string2'}",
+            "#{20 - 1}",
+            "'Just a string value'.substring(5)",
+          ]
+#  - id: contrast.action.span.el-execution
+#    type: span
+#    extends: attributes.contrast.code-exec
+#    brief: >
+#      Describes attributes for Contrast Action span of type el-execution. The Spring Expression Language (SpEL for short) is a
+#      powerful expression language that supports querying and manipulating an object graph at runtime.
+#  - id: contrast.action.span.ognl-execution
+#    extends: attributes.contrast.code-exec
+#    type: span
+#    brief: >
+#      Describes attributes for Contrast Action span of type ognl-execution. OGNL stands for Object-Graph Navigation Language.
+#      It is an expression language for getting and setting properties of Java objects, plus other extras such as list projection
+#      and selection and lambda expressions. You use the same expression for both getting and setting the value of a property.
