@@ -40,14 +40,13 @@ action nor will it contain enough information to determine the action execution 
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-**type:** `contrast`
+**type:** `none`
 
-**Description:** Additional attributes for Contrast Sensors to provide
-
+**Description:** contrast defined resources for observability data
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`contrast.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of contrast semantic conventions that the data adheres to. | `0.1.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of otel semantic conventions that the data adheres to. | `1.22.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.semconv.version`](/docs/attributes-registry/.md) | string | The version of contrast semantic conventions that the data adheres to. | `0.1.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.semconv.version`](/docs/attributes-registry/.md) | string | The version of otel semantic conventions that the data adheres to. | `1.22.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
