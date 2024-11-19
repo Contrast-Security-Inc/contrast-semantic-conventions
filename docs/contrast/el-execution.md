@@ -11,7 +11,7 @@ Used when span name is `el-execution`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`contrast.code.contents`](/docs/attributes-registry/contrast.md) | string | The code representing the expression being executed. | `#{'String1 ' + 'string2'}`; `#{20 - 1}`; `'Just a string value'.substring(5)` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.code.contents`](/docs/attributes-registry/contrast.md) | string | The code representing the expression being executed. | `#{'String1 ' + 'string2'}`; `#{20 - 1}`; `'Just a string value'.substring(5)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

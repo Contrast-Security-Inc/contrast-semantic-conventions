@@ -23,7 +23,7 @@ This metric is required.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`contrast.action`](/docs/attributes-registry/contrast.md) | string | The type of action that was observed. | `file-open-create`; `authn-request` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.action`](/docs/attributes-registry/contrast.md) | string | The type of action that was observed. | `file-open-create`; `authn-request` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `contrast.action` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -60,7 +60,7 @@ This metric is required.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`contrast.action`](/docs/attributes-registry/contrast.md) | string | The type of action that was observed. | `file-open-create`; `authn-request` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.action`](/docs/attributes-registry/contrast.md) | string | The type of action that was observed. | `file-open-create`; `authn-request` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `contrast.action` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
