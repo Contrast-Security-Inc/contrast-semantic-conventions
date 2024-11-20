@@ -14,49 +14,49 @@
 
 This document defines semantic convention attributes in the Contrast namespace
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
+| Attribute                                                             | Type   | Description                           | Examples                            | Stability                                                        |
+| --------------------------------------------------------------------- | ------ | ------------------------------------- | ----------------------------------- | ---------------------------------------------------------------- |
 | <a id="contrast-action" href="#contrast-action">`contrast.action`</a> | string | The type of action that was observed. | `file-open-create`; `authn-request` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `contrast.action` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `authn-request` | Functions that perform authentication actions | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `authz-request` | Functions that perform authorization actions | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `el-execution` | Spring expression language execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `file-open-create` | file open or create action | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `host-cmd-exec` | system shell command execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ldap-query` | Functions that result in and ldap query operation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ognl-execution` | Object-Graph Navigation Language expression execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `outbound-service-call` | Functions that result in external calls to other services | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `smtp-exec` | Functions that result in an SMTP command execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `storage-query` | Functions that execute queries | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `url-forward` | Any function designed to forward a request to another URL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `url-redirect` | Function that result in an http 302 redirect code sent to the client | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value                   | Description                                                          | Stability                                                        |
+| ----------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `authn-request`         | Functions that perform authentication actions                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `authz-request`         | Functions that perform authorization actions                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `el-execution`          | Spring expression language execution                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `file-open-create`      | file open or create action                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `host-cmd-exec`         | system shell command execution                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ldap-query`            | Functions that result in and ldap query operation                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ognl-execution`        | Object-Graph Navigation Language expression execution.               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `outbound-service-call` | Functions that result in external calls to other services            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `smtp-exec`             | Functions that result in an SMTP command execution                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `storage-query`         | Functions that execute queries                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `url-forward`           | Any function designed to forward a request to another URL            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `url-redirect`          | Function that result in an http 302 redirect code sent to the client | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Contrast Host Cmd Exec Attributes
 
 Describes attributes for Contrast Action span of type host-cmd-exec.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
+| Attribute                                                                                              | Type   | Description                                    | Examples                                         | Stability                                                        |
+| ------------------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------- |
 | <a id="contrast-host-cmd-exec-cmd" href="#contrast-host-cmd-exec-cmd">`contrast.host-cmd-exec.cmd`</a> | string | String of executed command with its arguments. | `ls /foo`; `bash -c somebin`; `chmod 755 foobar` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Contrast Resource Attributes
 
 contrast defined resources for observability data
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="contrast-deployment" href="#contrast-deployment">`contrast.deployment`</a> | string | deployment environment | `QA`; `DEVELOPMENT`; `PRODUCTION` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="contrast-semconv-version" href="#contrast-semconv-version">`contrast.semconv.version`</a> | string | The version of contrast semantic conventions that the data adheres to. | `0.1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="otel-semconv-version" href="#otel-semconv-version">`otel.semconv.version`</a> | string | The version of otel semantic conventions that the data adheres to. | `1.22.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                                                                                        | Type   | Description                                                            | Examples                          | Stability                                                        |
+| ------------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------- |
+| <a id="contrast-deployment" href="#contrast-deployment">`contrast.deployment`</a>                | string | deployment environment                                                 | `QA`; `DEVELOPMENT`; `PRODUCTION` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="contrast-semconv-version" href="#contrast-semconv-version">`contrast.semconv.version`</a> | string | The version of contrast semantic conventions that the data adheres to. | `0.1.0`                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-semconv-version" href="#otel-semconv-version">`otel.semconv.version`</a>             | string | The version of otel semantic conventions that the data adheres to.     | `1.22.0`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `contrast.deployment` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `DEVELOPMENT` | development environment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `PRODUCTION` | production environment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QA` | quality assurance environment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value         | Description                   | Stability                                                        |
+| ------------- | ----------------------------- | ---------------------------------------------------------------- |
+| `DEVELOPMENT` | development environment       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `PRODUCTION`  | production environment        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `QA`          | quality assurance environment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

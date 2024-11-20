@@ -184,12 +184,12 @@ fix-format:
 
 # Run all checks in order of speed / likely failure.
 .PHONY: check
-check: misspell markdownlint attribute-registry-generation markdown-link-check check-format check-policies
+check: misspell markdownlint check-format attribute-registry-generation markdown-link-check check-policies
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation attribute-registry-generation misspell-correction fix-format
+fix: table-generation attribute-registry-generation misspell-correction fix-format markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

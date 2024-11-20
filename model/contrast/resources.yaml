@@ -1,5 +1,6 @@
 groups:
-  - id: contrast.resource
+  - id: resource.contrast
+    name: contrast
     type: resource
     brief: >
       Additional attributes for Contrast Sensors to provide
