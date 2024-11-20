@@ -7,12 +7,14 @@ groups:
         brief: The version of contrast semantic conventions that the data adheres to.
         type: string
         stability: experimental
+        requirement_level: required
         examples:
-          - "0.1.0"
+          - "0.3.0"
       - id: otel.semconv.version
         brief: The version of otel semantic conventions that the data adheres to.
         type: string
         stability: experimental
+        requirement_level: required
         examples:
           - "1.22.0"
       - id: contrast.deployment
@@ -297,3 +299,28 @@ groups:
 #      Describes attributes for Contrast Action span of type ognl-execution. OGNL stands for Object-Graph Navigation Language.
 #      It is an expression language for getting and setting properties of Java objects, plus other extras such as list projection
 #      and selection and lambda expressions. You use the same expression for both getting and setting the value of a property.
+  - id: attributes.contrast.dimensional
+    type: attribute_group
+    brief: "Important dimensional attributes for agents"
+    extends: registry.contrast.resource
+    attributes:
+      - ref: http.route
+        requirement_level:
+          conditionally_required: iff event is scoped to an http request
+      - ref: http.request.method
+        requirement_level:
+          conditionally_required: iff event is scoped to an http request
+      - ref: service.namespace
+      - ref: service.name
+        requirement_level: required
+      - ref: service.version
+      - ref: service.instance.id
+        requirement_level: required
+      - ref: telemetry.sdk.language
+      - ref: telemetry.sdk.name
+      - ref: telemetry.sdk.version
+      - ref: telemetry.distro.name
+      - ref: telemetry.distro.version
+      - ref: cloud.provider
+      - ref: cloud.resource_id
+      - ref: cloud.region

@@ -18,7 +18,7 @@ groups:
           or another suitable identifier depending on the language.
           The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
           All custom identifiers SHOULD be stable across different versions of an implementation.
-        examples: ["opentelemetry"]
+        examples: ["opentelemetry", "contrast"]
       - id: telemetry.sdk.language
         type:
           members:
@@ -77,7 +77,7 @@ groups:
         note: |
           Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
           a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
-        examples: ["parts-unlimited-java"]
+        examples: ["contrast-java"]
       - id: telemetry.distro.version
         type: string
         stability: experimental

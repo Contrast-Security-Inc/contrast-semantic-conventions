@@ -162,7 +162,7 @@ service.name = Shop.shoppingcart
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`telemetry.sdk.language`](/docs/attributes-registry/telemetry.md) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`telemetry.sdk.name`](/docs/attributes-registry/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.name`](/docs/attributes-registry/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry`; `contrast` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`telemetry.sdk.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
@@ -212,7 +212,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.distro.name`](/docs/attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.distro.name`](/docs/attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `contrast-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`telemetry.distro.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
@@ -241,9 +241,9 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`contrast.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of contrast semantic conventions that the data adheres to. | `0.1.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of otel semantic conventions that the data adheres to. | `1.22.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`contrast.deployment`](/docs/attributes-registry/contrast.md) | string | deployment environment | `QA`; `DEVELOPMENT`; `PRODUCTION` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.semconv.version`](/docs/attributes-registry/attributes.md) | string | The version of contrast semantic conventions that the data adheres to. | `0.3.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.semconv.version`](/docs/attributes-registry/attributes.md) | string | The version of otel semantic conventions that the data adheres to. | `1.22.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.deployment`](/docs/attributes-registry/attributes.md) | string | deployment environment | `QA`; `DEVELOPMENT`; `PRODUCTION` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `contrast.deployment` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
