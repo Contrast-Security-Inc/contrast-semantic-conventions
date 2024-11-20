@@ -47,11 +47,11 @@ Describes attributes for Contrast Action span of type host-cmd-exec.
 
 contrast defined resources for observability data
 
-| Attribute                                                                                        | Type   | Description                                                            | Examples                          | Stability                                                        |
-| ------------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------- |
-| <a id="contrast-deployment" href="#contrast-deployment">`contrast.deployment`</a>                | string | deployment environment                                                 | `QA`; `DEVELOPMENT`; `PRODUCTION` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="contrast-semconv-version" href="#contrast-semconv-version">`contrast.semconv.version`</a> | string | The version of contrast semantic conventions that the data adheres to. | `0.3.0`                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="otel-semconv-version" href="#otel-semconv-version">`otel.semconv.version`</a>             | string | The version of otel semantic conventions that the data adheres to.     | `1.22.0`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                                                                                        | Type   | Description                                                       | Examples                          | Stability                                                        |
+| ------------------------------------------------------------------------------------------------ | ------ | ----------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------- |
+| <a id="contrast-deployment" href="#contrast-deployment">`contrast.deployment`</a>                | string | deployment environment                                            | `QA`; `DEVELOPMENT`; `PRODUCTION` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="contrast-semconv-version" href="#contrast-semconv-version">`contrast.semconv.version`</a> | string | The version of contrast semantic conventions the data adheres to. | `0.3.0`                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-semconv-version" href="#otel-semconv-version">`otel.semconv.version`</a>             | string | The version of otel semantic conventions the data adheres to.     | `1.22.0`                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `contrast.deployment` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

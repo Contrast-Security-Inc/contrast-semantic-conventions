@@ -241,9 +241,9 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`contrast.semconv.version`](/docs/attributes-registry/attributes.md) | string | The version of contrast semantic conventions that the data adheres to. | `0.3.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.semconv.version`](/docs/attributes-registry/attributes.md) | string | The version of otel semantic conventions that the data adheres to. | `1.22.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`contrast.deployment`](/docs/attributes-registry/attributes.md) | string | deployment environment | `QA`; `DEVELOPMENT`; `PRODUCTION` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.deployment`](/docs/attributes-registry/contrast.md) | string | deployment environment | `QA`; `DEVELOPMENT`; `PRODUCTION` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of contrast semantic conventions the data adheres to. | `0.3.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of otel semantic conventions the data adheres to. | `1.22.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `contrast.deployment` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
