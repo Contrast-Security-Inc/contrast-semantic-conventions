@@ -15,7 +15,7 @@ groups:
         stability: experimental
         examples:
           - "1.22.0"
-      - id: deployment
+      - id: contrast.deployment
         brief: "deployment environment"
         stability: experimental
         type:

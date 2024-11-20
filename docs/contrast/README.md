@@ -40,7 +40,7 @@ action nor will it contain enough information to determine the action execution 
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-**type:** `contrast_resource`
+**type:** `none`
 
 **Description:** Additional attributes for Contrast Sensors to provide
 
@@ -48,9 +48,9 @@ action nor will it contain enough information to determine the action execution 
 |---|---|---|---|---|---|
 | [`contrast.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of contrast semantic conventions that the data adheres to. | `0.1.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`otel.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of otel semantic conventions that the data adheres to. | `1.22.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`deployment`](/docs/attributes-registry/contrast.md) | string | deployment environment | `QA`; `DEVELOPMENT`; `PRODUCTION` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.deployment`](/docs/attributes-registry/contrast.md) | string | deployment environment | `QA`; `DEVELOPMENT`; `PRODUCTION` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`deployment` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`contrast.deployment` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
