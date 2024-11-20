@@ -43,8 +43,8 @@ groups:
     brief: >
       Describes attributes for Contrast Action span of type host-cmd-exec.
     attributes:
-      - ref: contrast.file.open.path
-      #- ref: contrast.host-cmd-exec.cmd
+      - ref: contrast.host-cmd-exec.cmd
+        requirement_level: recommended
 
   - id: span.contrast.action.outbound-service-call
     type: span

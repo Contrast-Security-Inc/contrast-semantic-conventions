@@ -7,6 +7,7 @@
 # Contrast
 
 - [Contrast Action Attributes](#contrast-action-attributes)
+- [Contrast Host Cmd Exec Attributes](#contrast-host-cmd-exec-attributes)
 - [Contrast Resource Attributes](#contrast-resource-attributes)
 
 ## Contrast Action Attributes
@@ -33,6 +34,14 @@ This document defines semantic convention attributes in the Contrast namespace
 | `storage-query` | Functions that execute queries | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url-forward` | Any function designed to forward a request to another URL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url-redirect` | Function that result in an http 302 redirect code sent to the client | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Contrast Host Cmd Exec Attributes
+
+Describes attributes for Contrast Action span of type host-cmd-exec.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="contrast-host-cmd-exec-cmd" href="#contrast-host-cmd-exec-cmd">`contrast.host-cmd-exec.cmd`</a> | string | String of executed command with its arguments. | `ls /foo`; `bash -c somebin`; `chmod 755 foobar` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Contrast Resource Attributes
 

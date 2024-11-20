@@ -37,7 +37,6 @@ Currently, the following namespaces exist:
 - [Cloud](cloud.md)
 - [Code](code.md)
 - [Contrast](contrast.md)
-- [Deployment](deployment.md)
 - [Destination](destination.md)
 - [Enduser](enduser.md)
 - [Error](error.md)

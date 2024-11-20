@@ -235,7 +235,7 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-**type:** `none`
+**type:** `contrast_resource`
 
 **Description:** Additional attributes for Contrast Sensors to provide
 
@@ -243,6 +243,15 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 |---|---|---|---|---|---|
 | [`contrast.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of contrast semantic conventions that the data adheres to. | `0.1.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`otel.semconv.version`](/docs/attributes-registry/contrast.md) | string | The version of otel semantic conventions that the data adheres to. | `1.22.0` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`deployment`](/docs/attributes-registry/contrast.md) | string | deployment environment | `QA`; `DEVELOPMENT`; `PRODUCTION` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`deployment` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `DEVELOPMENT` | development environment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `PRODUCTION` | production environment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `QA` | quality assurance environment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -274,8 +283,8 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 
 - [Operating System](./os.md)
 - [Cloud](./cloud.md)
-- Deployment:
-  - [Deployment Environment](./deployment-environment.md)
+- Contrast Resources:
+  - [Deployment Environment](./contrast-resources.md)
 - [Browser](./browser.md)
 
 ## Version attributes

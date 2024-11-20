@@ -257,12 +257,12 @@ groups:
               value: o_rdwr
               brief: Read/write access
 
-  - id: contrast.host-cmd-exec
+  - id: registry.contrast.host-cmd-exec
     type: attribute_group
     brief: >
       Describes attributes for Contrast Action span of type host-cmd-exec.
     attributes:
-      - id: cmd
+      - id: contrast.host-cmd-exec.cmd
         stability: experimental
         brief: >
           String of executed command with its arguments.

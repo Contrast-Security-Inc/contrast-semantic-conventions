@@ -11,7 +11,7 @@ Used when span name is `host-cmd-exec`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`contrast.file.open.path`](/docs/attributes-registry/contrast.md) | string | The absolute path that was accessed. | `/etc/myconfig`; `/foo/bar`; `/some/tmp` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`contrast.host-cmd-exec.cmd`](/docs/attributes-registry/contrast.md) | string | String of executed command with its arguments. | `ls /foo`; `bash -c somebin`; `chmod 755 foobar` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
