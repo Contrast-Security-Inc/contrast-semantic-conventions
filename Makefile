@@ -210,7 +210,7 @@ install-tools: $(MISSPELL)
 #
 # .. which is why some additional processing is required to extract the
 # latest version number and strip off the "v" prefix.
-LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
+LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/Contrast-Security-OSS/secobs-semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
 .PHONY: check-policies
 check-policies:
 	docker run --rm \
@@ -218,7 +218,7 @@ check-policies:
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
 		--registry=/home/weaver/source \
-		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
+		--baseline-registry=https://github.com/Contrast-Security-OSS/secobs-semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
 		--policy=/home/weaver/policies
 
 # Test rego policies
