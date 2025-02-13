@@ -17,7 +17,7 @@ network connection severed, etc.
 
 In OpenTelemetry, Events are implemented as a specific type of `LogRecord` that conforms to
 the conventions included here, and Events
-[have their own API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md).
+[have their own API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/logs/api.md).
 The API abstracts away knowledge of `LogRecord` so that users only deal with Event
 semantics.
 
@@ -73,8 +73,7 @@ Recommendations for defining events:
   collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/common#attribute)
   attributes.
 * Events SHOULD be generated / produced / recorded using the
-    [Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md)
-    to ensure that the event is created using the configured SDK instance.
+    [Log API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/logs/api.md#emit-a-logrecord)
   * The Event API is not yet available in all OpenTelemetry SDKs.
   * TODO: Add deep link to the [compliance matrix of the Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md)
     when it exists.
