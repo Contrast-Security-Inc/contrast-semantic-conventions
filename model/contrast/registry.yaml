@@ -97,7 +97,7 @@ groups:
               brief: "Object-Graph Navigation Language expression execution."
 
 
-  - id: contrast.action.authn
+  - id: registry.contrast.action.authn
     type: attribute_group
     brief: "Describes attributes for Contrast Action span of type authn-request"
     attributes:
@@ -159,7 +159,7 @@ groups:
               brief: ""
 
 
-  - id: contrast.action.authz
+  - id: registry.contrast.action.authz
     type: attribute_group
     brief: >
       Describes attributes for Contrast Action span of type authz-request
@@ -225,7 +225,7 @@ groups:
         examples: [top_secret, confidential, internal, public]
         type: string
 
-  - id: contrast.action.file_open_create
+  - id: registry.contrast.action.file_open_create
     type: attribute_group
     brief: >
       Describes attributes for Contrast Action span of type file-open-create.
@@ -270,7 +270,7 @@ groups:
         type: string
 
 
-  - id: contrast.code_exec
+  - id: registry.contrast.code_exec
     type: attribute_group
     brief: Attributes that refer to code execution operations
     attributes:

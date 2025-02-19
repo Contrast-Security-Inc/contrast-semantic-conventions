@@ -7,6 +7,10 @@
 # Contrast
 
 - [Contrast Action Attributes](#contrast-action-attributes)
+- [Contrast Action Authn Attributes](#contrast-action-authn-attributes)
+- [Contrast Action Authz Attributes](#contrast-action-authz-attributes)
+- [Contrast Action File Open Create Attributes](#contrast-action-file-open-create-attributes)
+- [Contrast Code Exec Attributes](#contrast-code-exec-attributes)
 - [Contrast Host Cmd Exec Attributes](#contrast-host-cmd-exec-attributes)
 - [Contrast Resource Attributes](#contrast-resource-attributes)
 
@@ -34,6 +38,82 @@ This document defines semantic convention attributes in the Contrast namespace
 | `storage-query`         | Functions that execute queries                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url-forward`           | Any function designed to forward a request to another URL            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url-redirect`          | Function that result in an http 302 redirect code sent to the client | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Contrast Action Authn Attributes
+
+Describes attributes for Contrast Action span of type authn-request
+
+| Attribute                                                                                                                   | Type   | Description                                                                                                                                                              | Examples                          | Stability                                                        |
+| --------------------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- | ---------------------------------------------------------------- |
+| <a id="contrast-authentication-mechanism" href="#contrast-authentication-mechanism">`contrast.authentication.mechanism`</a> | string | An authentication mechanism is a specific method or approach used to verify the identity of a user, system, or entity attempting to access a resource.                   | `password`; `token`; `biometric`  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="contrast-authentication-protocol" href="#contrast-authentication-protocol">`contrast.authentication.protocol`</a>    | string | An authentication protocol is a set of rules and procedures that dictate how authentication mechanisms should operate to establish trust and verify identities securely. | `oauth`; `saml`; `ldap`; `custom` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`contrast.authentication.mechanism` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value         | Description                                                       | Stability                                                        |
+| ------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `biometric`   | file open or create action                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `certificate` | x509 certificate authentication or similar                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mfa`         | Two or more of the above mechanisms are used                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `password`    | Users provide a username and password.                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `token`       | Involves using a physical or virtual token to authenticate a user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`contrast.authentication.protocol` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value      | Description                           | Stability                                                        |
+| ---------- | ------------------------------------- | ---------------------------------------------------------------- |
+| `kerberos` | kerberos                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ldap`     | Lightweight Directory Access Protocol | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oauth`    | Open Authentication and OIDC          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `saml`     | Security Assertion Markup Language    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Contrast Action Authz Attributes
+
+Describes attributes for Contrast Action span of type authz-request
+
+| Attribute                                                                                                                               | Type   | Description                                                                                                                                                     | Examples                                           | Stability                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="contrast-authorization-dac-permission" href="#contrast-authorization-dac-permission">`contrast.authorization.dac.permission`</a> | string | Permission requested for access to the resource. The values here are very domain specific, but will always be normalized to a lowercase value in the data here. | `read`; `write`; `append`; `delete`                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="contrast-authorization-mac-labels" href="#contrast-authorization-mac-labels">`contrast.authorization.mac.labels`</a>             | string | Labels on the requested resource. The values here are very domain specific, but will always be normalized to a lowercase value in the data here.                | `top_secret`; `confidential`; `internal`; `public` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="contrast-authorization-mechanism" href="#contrast-authorization-mechanism">`contrast.authorization.mechanism`</a>                | string | How are authz decisions made for the resource.                                                                                                                  | `rbac`; `dac`; `pbac`                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="contrast-authorization-rbac-role" href="#contrast-authorization-rbac-role">`contrast.authorization.rbac.role`</a>                | string | Role Requested for authz check. The values here are very domain specific, but will always be normalized to a lowercase value in the data here.                  | `user`; `editor`; `manager`                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`contrast.authorization.mechanism` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description                                                                                                                                                                          | Stability                                                        |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| `abac` | Attribute Based Access Control                                                                                                                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dac`  | Discretionary Access Control (DAC) is a model where owners of resources have the discretion to control access to their resources.                                                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hbac` | History Based Access Control                                                                                                                                                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mac`  | Mandatory Access Control (MAC) is a security model where access to resources is determined by the security labels assigned to subjects (users or processes) and objects (resources). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pbac` | Policy Based Access Control                                                                                                                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rbac` | Role Based Access Control                                                                                                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tbac` | Time Based Access Control                                                                                                                                                            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Contrast Action File Open Create Attributes
+
+Describes attributes for Contrast Action span of type file-open-create.
+
+| Attribute                                                                                        | Type   | Description                                         | Examples                                 | Stability                                                        |
+| ------------------------------------------------------------------------------------------------ | ------ | --------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------- |
+| <a id="contrast-file-open-flags" href="#contrast-file-open-flags">`contrast.file.open.flags`</a> | string | The flags used when the file was opened or created. | `o_rdonly`; `o_rdwr`                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="contrast-file-open-path" href="#contrast-file-open-path">`contrast.file.open.path`</a>    | string | The absolute path that was accessed.                | `/etc/myconfig`; `/foo/bar`; `/some/tmp` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`contrast.file.open.flags` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value      | Description       | Stability                                                        |
+| ---------- | ----------------- | ---------------------------------------------------------------- |
+| `o_rdonly` | Read only access  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `o_rdwr`   | Read/write access | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `o_wronly` | Write only access | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Contrast Code Exec Attributes
+
+Attributes that refer to code execution operations
+
+| Attribute                                                                                  | Type   | Description                                          | Examples                                                                       | Stability                                                        |
+| ------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| <a id="contrast-code-contents" href="#contrast-code-contents">`contrast.code.contents`</a> | string | The code representing the expression being executed. | `#{'String1 ' + 'string2'}`; `#{20 - 1}`; `'Just a string value'.substring(5)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Contrast Host Cmd Exec Attributes
 

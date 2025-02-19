@@ -48,7 +48,7 @@ all: install-tools markdown-toc table-generation fix-format check yamllint schem
 		 check-file-and-folder-names-in-docs
 
 offline: markdown-toc table-generation fix-format  misspell markdownlint check-format \
-		attribute-registry-generation check-policies yamllinpol check-file-and-folder-names-in-docs
+		attribute-registry-generation check-policies yamllint check-file-and-folder-names-in-docs
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:

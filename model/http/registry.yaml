@@ -1,17 +1,16 @@
 groups:
   - id: registry.http
-    prefix: http
     type: attribute_group
     brief: "This document defines semantic convention attributes in the HTTP namespace."
     attributes:
-      - id: request.body.size
+      - id: http.request.body.size
         type: int
         brief: >
           The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
-      - id: request.header
+      - id: http.request.header
         type: template[string[]]
         brief: >
           HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values.
@@ -30,7 +29,7 @@ groups:
             'http.request.header.content_type=["application/json"]',
             'http.request.header.x_forwarded_for=["1.2.3.4", "1.2.3.5"]',
           ]
-      - id: request.method
+      - id: http.request.method
         type:
           allow_custom_values: true
           members:
@@ -81,11 +80,11 @@ groups:
           HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
           Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
           Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-      - id: request.method_original
+      - id: http.request.method_original
         type: string
         brief: Original HTTP method sent by the client in the request line.
         examples: ["GeT", "ACL", "foo"]
-      - id: resend_count
+      - id: http.resend_count
         type: int
         brief: >
           The ordinal number of request resending attempt (for any reason, including redirects).
@@ -94,14 +93,14 @@ groups:
           was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues,
           or any other).
         examples: 3
-      - id: response.body.size
+      - id: http.response.body.size
         type: int
         brief: >
           The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
-      - id: response.header
+      - id: http.response.header
         type: template[string[]]
         brief: >
           HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase, with `-` characters replaced by `_`), the value being the header values.
@@ -119,11 +118,11 @@ groups:
             'http.response.header.content_type=["application/json"]',
             'http.response.header.my_custom_header=["abc", "def"]',
           ]
-      - id: response.status_code
+      - id: http.response.status_code
         type: int
         brief: "[HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6)."
         examples: [200]
-      - id: route
+      - id: http.route
         type: string
         brief: >
           The matched route (path template in the format used by the respective server framework). See note below

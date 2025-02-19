@@ -55,12 +55,12 @@ groups:
 
   - id: span.contrast.action.el_execution
     type: span
-    extends: contrast.code_exec
+    extends: registry.contrast.code_exec
     brief: >
       Describes attributes for Contrast Action span of type el-execution. The Spring Expression Language (SpEL for short) is a
       powerful expression language that supports querying and manipulating an object graph at runtime.
   - id: span.contrast.action.ognl_execution
-    extends: contrast.code_exec
+    extends: registry.contrast.code_exec
     type: span
     brief: >
       Describes attributes for Contrast Action span of type ognl-execution. OGNL stands for Object-Graph Navigation Language.
