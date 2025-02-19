@@ -25,7 +25,7 @@ groups:
       - ref: network.type
       - ref: user_agent.original
 
-  - id: trace.http.client
+  - id: span.http.client
     type: span
     extends: attributes.http.client
     span_kind: client
@@ -48,7 +48,7 @@ groups:
         sampling_relevant: true
         requirement_level: required
 
-  - id: trace.http.server
+  - id: span.http.server
     type: span
     extends: attributes.http.server
     span_kind: server

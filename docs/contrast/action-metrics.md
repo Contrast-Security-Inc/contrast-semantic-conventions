@@ -36,7 +36,7 @@ This metric is required.
 | `host-cmd-exec` | system shell command execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ldap-query` | Functions that result in and ldap query operation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ognl-execution` | Object-Graph Navigation Language expression execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `outbound-service-call` | Functions that result in external calls to other services | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `outbound_service_call` | Functions that result in external calls to other services | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `smtp-exec` | Functions that result in an SMTP command execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `storage-query` | Functions that execute queries | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url-forward` | Any function designed to forward a request to another URL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -73,7 +73,7 @@ This metric is required.
 | `host-cmd-exec` | system shell command execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ldap-query` | Functions that result in and ldap query operation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ognl-execution` | Object-Graph Navigation Language expression execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `outbound-service-call` | Functions that result in external calls to other services | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `outbound_service_call` | Functions that result in external calls to other services | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `smtp-exec` | Functions that result in an SMTP command execution | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `storage-query` | Functions that execute queries | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url-forward` | Any function designed to forward a request to another URL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

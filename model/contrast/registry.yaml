@@ -47,51 +47,51 @@ groups:
         type:
           allow_custom_values: false
           members:
-            - id: storage-query
+            - id: storage_query
               stability: experimental
               value: "storage-query"
               brief: "Functions that execute queries"
-            - id: file-open-create
+            - id: file_open_create
               stability: experimental
               value: "file-open-create"
               brief: "file open or create action"
-            - id: url-forward
+            - id: url_forward
               stability: experimental
               value: "url-forward"
               brief: "Any function designed to forward a request to another URL"
-            - id: url-redirect
+            - id: url_redirect
               stability: experimental
               value: "url-redirect"
               brief: "Function that result in an http 302 redirect code sent to the client"
-            - id: host-cmd-exec
+            - id: host_cmd_exec
               stability: experimental
               value: "host-cmd-exec"
               brief: "system shell command execution"
-            - id: ldap-query
+            - id: ldap_query
               stability: experimental
               value: "ldap-query"
               brief: "Functions that result in and ldap query operation"
-            - id: smtp-exec
+            - id: smtp_exec
               stability: experimental
               value: "smtp-exec"
               brief: "Functions that result in an SMTP command execution"
-            - id: outbound-service-call
+            - id: outbound_service_call
               stability: experimental
-              value: "outbound-service-call"
+              value: "outbound_service_call"
               brief: "Functions that result in external calls to other services"
-            - id: authn-request
+            - id: authn_request
               stability: experimental
               value: "authn-request"
               brief: "Functions that perform authentication actions"
-            - id: authz-request
+            - id: authz_request
               stability: experimental
               value: "authz-request"
               brief: "Functions that perform authorization actions"
-            - id: el-execution
+            - id: el_execution
               stability: experimental
               value: "el-execution"
               brief: "Spring expression language execution"
-            - id: ognl-execution
+            - id: ognl_execution
               stability: experimental
               value: "ognl-execution"
               brief: "Object-Graph Navigation Language expression execution."
@@ -225,7 +225,7 @@ groups:
         examples: [top_secret, confidential, internal, public]
         type: string
 
-  - id: contrast.action.file-open-create
+  - id: contrast.action.file_open_create
     type: attribute_group
     brief: >
       Describes attributes for Contrast Action span of type file-open-create.
@@ -257,12 +257,12 @@ groups:
               value: o_rdwr
               brief: Read/write access
 
-  - id: registry.contrast.host-cmd-exec
+  - id: registry.contrast.host_cmd_exec
     type: attribute_group
     brief: >
       Describes attributes for Contrast Action span of type host-cmd-exec.
     attributes:
-      - id: contrast.host-cmd-exec.cmd
+      - id: contrast.host_cmd_exec.cmd
         stability: experimental
         brief: >
           String of executed command with its arguments.
@@ -270,7 +270,7 @@ groups:
         type: string
 
 
-  - id: contrast.code-exec
+  - id: contrast.code_exec
     type: attribute_group
     brief: Attributes that refer to code execution operations
     attributes:

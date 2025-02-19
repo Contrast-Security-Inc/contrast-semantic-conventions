@@ -47,6 +47,9 @@ OTEL_SEMCONV_VERSION=1.22.0
 all: install-tools markdown-toc table-generation fix-format check yamllint schema-check \
 		 check-file-and-folder-names-in-docs
 
+offline: markdown-toc table-generation fix-format  misspell markdownlint check-format \
+		attribute-registry-generation check-policies yamllinpol check-file-and-folder-names-in-docs
+
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
 	@found=`find docs -name '*_*'`; \

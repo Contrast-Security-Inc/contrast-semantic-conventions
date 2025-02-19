@@ -28,39 +28,39 @@ groups:
         requirement_level:
           recommended: If mechanism is 'mac'
 
-  - id: span.contrast.action.file-open-create
+  - id: span.contrast.action.file_open_create
     type: span
     brief: >
-      Describes attributes for Contrast Action span of type file-open-create.
+      Describes attributes for Contrast Action span of type file_open_create.
     attributes:
       - ref: contrast.file.open.path
         requirement_level: required
       - ref: contrast.file.open.flags
         requirement_level: recommended
 
-  - id: span.contrast.action.host-cmd-exec
+  - id: span.contrast.action.host_cmd_exec
     type: span
     brief: >
       Describes attributes for Contrast Action span of type host-cmd-exec.
     attributes:
-      - ref: contrast.host-cmd-exec.cmd
+      - ref: contrast.host_cmd_exec.cmd
         requirement_level: recommended
 
-  - id: span.contrast.action.outbound-service-call
+  - id: span.contrast.action.outbound_service_call
     type: span
-    extends: trace.http.client
+    extends: span.http.client
     brief: >
       Describes attributes for Contrast Action span of type outbound-service-call.
       These actions are always using the http protocol.
 
-  - id: span.contrast.action.el-execution
+  - id: span.contrast.action.el_execution
     type: span
-    extends: contrast.code-exec
+    extends: contrast.code_exec
     brief: >
       Describes attributes for Contrast Action span of type el-execution. The Spring Expression Language (SpEL for short) is a
       powerful expression language that supports querying and manipulating an object graph at runtime.
-  - id: span.contrast.action.ognl-execution
-    extends: contrast.code-exec
+  - id: span.contrast.action.ognl_execution
+    extends: contrast.code_exec
     type: span
     brief: >
       Describes attributes for Contrast Action span of type ognl-execution. OGNL stands for Object-Graph Navigation Language.

@@ -29,7 +29,7 @@ This document defines semantic convention attributes in the Contrast namespace
 | `host-cmd-exec`         | system shell command execution                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ldap-query`            | Functions that result in and ldap query operation                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ognl-execution`        | Object-Graph Navigation Language expression execution.               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `outbound-service-call` | Functions that result in external calls to other services            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `outbound_service_call` | Functions that result in external calls to other services            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `smtp-exec`             | Functions that result in an SMTP command execution                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `storage-query`         | Functions that execute queries                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `url-forward`           | Any function designed to forward a request to another URL            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -41,7 +41,7 @@ Describes attributes for Contrast Action span of type host-cmd-exec.
 
 | Attribute                                                                                              | Type   | Description                                    | Examples                                         | Stability                                                        |
 | ------------------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------- |
-| <a id="contrast-host-cmd-exec-cmd" href="#contrast-host-cmd-exec-cmd">`contrast.host-cmd-exec.cmd`</a> | string | String of executed command with its arguments. | `ls /foo`; `bash -c somebin`; `chmod 755 foobar` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="contrast-host-cmd-exec-cmd" href="#contrast-host-cmd-exec-cmd">`contrast.host_cmd_exec.cmd`</a> | string | String of executed command with its arguments. | `ls /foo`; `bash -c somebin`; `chmod 755 foobar` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Contrast Resource Attributes
 

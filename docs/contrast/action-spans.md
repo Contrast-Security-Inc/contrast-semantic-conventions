@@ -27,7 +27,7 @@ targeted toward describing that action.
 * [authz-request](authz-request.md)
 * [storage-query](storage-query.md)
 * [file-open-create](file-open-create.md)
-* [outbound-service-call](outbound-service-call.md)
+* [outbound-service-call](outbound_service_call.md)
 * [url-forward](url-forward.md)
 * [url-redirect](url-redirect.md)
 * [host-cmd-exec](host-cmd-exec.md)
